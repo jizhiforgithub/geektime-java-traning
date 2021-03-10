@@ -32,6 +32,9 @@
         <input type="text" id="inputPhoneNumber" name="phoneNumber" class="form-control" placeholder="请输入手机号码" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
+        <p style="color: red">
+            ${error}
+        </p>
     </form>
 </div>
 

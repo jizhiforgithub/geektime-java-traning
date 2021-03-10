@@ -1,5 +1,11 @@
 package com.jizhi.geektime.projects.user.domain;
 
+import com.jizhi.geektime.projects.user.validator.annotation.PhoneNumber;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
@@ -11,12 +17,16 @@ public class User {
 
     private Long id;
 
+    @NotNull
     private String name;
 
+    @Length(min = 6, max = 32)
     private String password;
 
+    @Email
     private String email;
 
+    @PhoneNumber
     private String phoneNumber;
 
     public Long getId() {

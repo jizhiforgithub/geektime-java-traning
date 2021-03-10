@@ -14,8 +14,8 @@ import java.util.List;
 
 /**
  * 基于数据库的用户存储实现
- * 2021/3/2
- * jizhi7
+ * @author jizhi7
+ * @since 1.0
  **/
 public class DatabaseUserRepository extends AbstractDatabaseRepository implements UserRepository {
 

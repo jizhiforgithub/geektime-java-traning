@@ -24,12 +24,16 @@
         <h1 class="h3 mb-3 font-weight-normal">注册</h1>
         <label for="inputUserName" class="sr-only">请输入姓名</label>
         <input type="text" id="inputUserName" name="name" class="form-control" placeholder="请输入姓名" required autofocus>
+        <p style="color: red">${error.name}</p>
         <label for="inputEmail" class="sr-only">请输入电子邮件</label>
         <input type="email" id="inputEmail" name="email" class="form-control" placeholder="请输入电子邮件" required autofocus>
+        <p style="color: red">${error.email}</p>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="text" id="inputPassword" name="password" class="form-control" placeholder="请输入密码" required>
         <label for="inputPhoneNumber" class="sr-only">Password</label>
+        <p style="color: red">${error.password}</p>
         <input type="text" id="inputPhoneNumber" name="phoneNumber" class="form-control" placeholder="请输入手机号码" required>
+        <p style="color: red">${error.phoneNumber}</p>
         <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
     </form>

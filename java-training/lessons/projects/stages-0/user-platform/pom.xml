@@ -29,6 +29,10 @@
         <derby.version>10.13.1.1</derby.version>
         <fastjson.version>1.2.55</fastjson.version>
 
+        <cglib.version>2.2.2</cglib.version>
+        <hibernate-validator.version>5.3.6.Final</hibernate-validator.version>
+        <javax.el.version>3.0.0</javax.el.version>
+
         <!-- Maven Plugins 版本 -->
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <maven.source.version>3.0.1</maven.source.version>
@@ -85,6 +89,24 @@
                 <groupId>org.apache.derby</groupId>
                 <artifactId>derby</artifactId>
                 <version>${derby.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.el</artifactId>
+                <version>${javax.el.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

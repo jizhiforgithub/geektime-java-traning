@@ -1,9 +1,0 @@
-0:0:0:0:0:0:0:1 - - [03/Mar/2021:16:30:16 +0800] "POST /user/login HTTP/1.1" 200 12 http-bio-8080-exec-1 125
-0:0:0:0:0:0:0:1 - - [03/Mar/2021:16:30:21 +0800] "GET /register-form.jsp HTTP/1.1" 200 2311 http-bio-8080-exec-3 681
-0:0:0:0:0:0:0:1 - - [03/Mar/2021:16:30:27 +0800] "POST /user/register HTTP/1.1" 200 1315 http-bio-8080-exec-4 178
-0:0:0:0:0:0:0:1 - - [03/Mar/2021:16:30:28 +0800] "GET /login-form.jsp HTTP/1.1" 200 2088 http-bio-8080-exec-6 118
-0:0:0:0:0:0:0:1 - - [03/Mar/2021:16:30:30 +0800] "POST /user/login HTTP/1.1" 200 108 http-bio-8080-exec-7 49
-0:0:0:0:0:0:0:1 - - [03/Mar/2021:16:30:34 +0800] "POST /user/login HTTP/1.1" 200 108 http-bio-8080-exec-8 5
-0:0:0:0:0:0:0:1 - - [03/Mar/2021:16:30:46 +0800] "GET /register-form.jsp HTTP/1.1" 200 2311 http-bio-8080-exec-9 9
-0:0:0:0:0:0:0:1 - - [03/Mar/2021:16:30:56 +0800] "POST /user/register HTTP/1.1" 200 1315 http-bio-8080-exec-9 9
-0:0:0:0:0:0:0:1 - - [03/Mar/2021:16:30:59 +0800] "POST /user/login HTTP/1.1" 200 199 http-bio-8080-exec-9 6
