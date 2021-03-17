@@ -113,7 +113,7 @@ public class TransactionalCallBack implements BeforeInvoker, AfterInvoker, Throw
 
 
     @Override
-    public void throwable(Object proxyObj, Object targetObj, Method method, Object[] methodArgs, Throwable throwable) {
+    public void throwable(Object proxyObj, Object targetObj, Method method, Object[] methodArgs, Throwable throwable) throws Throwable{
         try {
             boolean isRollback = false;
             // 目标方法执行抛出了错误，如果开启了事务，需要执行事物的回滚
@@ -141,6 +141,7 @@ public class TransactionalCallBack implements BeforeInvoker, AfterInvoker, Throw
         } catch (SQLException e) {
             throw new RuntimeException(e.getCause());
         }
+        logger.log(Level.SEVERE, throwable.getCause().getMessage());
     }
 
     /**

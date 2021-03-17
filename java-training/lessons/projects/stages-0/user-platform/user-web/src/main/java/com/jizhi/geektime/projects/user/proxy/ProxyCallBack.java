@@ -67,7 +67,7 @@ public class ProxyCallBack implements MethodInterceptor {
                     th.throwable(proxyObj, this.target, method, methodArgs, throwable);
                 }
             }
-            throw new RuntimeException(throwable.getCause());
+            return null;
         } finally {
             if(finallyInvokers != null && finallyInvokers.size() > 0) {
                 for (FinallyInvoker finallyInvoker : finallyInvokers) {

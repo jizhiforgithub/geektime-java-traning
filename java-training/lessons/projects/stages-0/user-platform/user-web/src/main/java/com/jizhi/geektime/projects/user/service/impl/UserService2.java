@@ -30,7 +30,7 @@ public class UserService2 {
         user.setPassword("****");
         user.setPhoneNumber("2222");
         userRepository.save(user);
-        //int a = 1/0;
+        int a = 1/0;
     }
 
 }
