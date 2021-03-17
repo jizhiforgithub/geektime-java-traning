@@ -163,6 +163,7 @@ public abstract class AbstractDatabaseRepository {
      */
     protected int executeUpdate(String sql, Object... args) {
         Connection connection = getConnection();
+        System.out.println("sql : conn: " + connection.hashCode());
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             prepareStatementSqlArgs(preparedStatement, args);

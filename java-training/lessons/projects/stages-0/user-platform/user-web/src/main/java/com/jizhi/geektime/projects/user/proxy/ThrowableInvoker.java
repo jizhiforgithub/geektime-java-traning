@@ -9,6 +9,6 @@ import java.lang.reflect.Method;
  **/
 public interface ThrowableInvoker extends Invoker {
 
-    Object throwable(Object proxyObj, Object targetObj, Method method, Object[] methodArgs, Throwable throwable);
+    void throwable(Object proxyObj, Object targetObj, Method method, Object[] methodArgs, Throwable throwable);
 
 }

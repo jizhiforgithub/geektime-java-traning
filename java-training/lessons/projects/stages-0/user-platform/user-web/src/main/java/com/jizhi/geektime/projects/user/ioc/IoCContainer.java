@@ -107,7 +107,8 @@ public class IoCContainer implements Container {
 
     /**
      * 从jndi中根据名字查找bean
-     *  如果需要的话，就创建代理类
+     * 如果需要的话，就创建代理类
+     *
      * @param name 名称, 带有根路径的全名称
      * @return bean实例
      */
@@ -134,6 +135,7 @@ public class IoCContainer implements Container {
 
     /**
      * 将传递进来的对象，实现依赖注入
+     *
      * @param obj 注入的对象
      */
     private void doInject(Object obj) {
@@ -141,9 +143,9 @@ public class IoCContainer implements Container {
         try {
             Class<?> clazz = obj.getClass();
             // 如果这个对象是CGlib提升过的，只注入它代理的对象
-            if(clazz.getName().contains("$$EnhancerByCGLIB")) {
+            if (clazz.getName().contains("$$EnhancerByCGLIB")) {
                 // 拿到回调接口
-                ProxyCallBack callback = (ProxyCallBack)clazz.getDeclaredMethod("getCallback", int.class).invoke(obj, 0);
+                ProxyCallBack callback = (ProxyCallBack) clazz.getDeclaredMethod("getCallback", int.class).invoke(obj, 0);
                 // 拿到回调接口里面的目标对象
                 obj = callback.getTarget();
                 // 获取代理对象的类
@@ -228,6 +230,7 @@ public class IoCContainer implements Container {
 
     /**
      * 初始化过程，调用 @PostConstruct 的方法
+     *
      * @param obj bean初始化对象
      */
     private void doInitalionlized(Object obj) {
@@ -282,7 +285,8 @@ public class IoCContainer implements Container {
 
     /**
      * 从jndi中加载出所有的bean名称
-     * @param name    jndi bean路径
+     *
+     * @param name jndi bean路径
      */
     private void loadJndiNames(String name) {
         try {

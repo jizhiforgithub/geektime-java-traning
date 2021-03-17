@@ -11,7 +11,6 @@ import net.sf.cglib.proxy.Enhancer;
 public class ProxyUtils {
 
     public static Object createProxy(Class<?> target, Callback callback) {
-
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(target);
         enhancer.setCallback(callback);

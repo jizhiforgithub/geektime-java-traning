@@ -29,12 +29,8 @@ public class ProxyCallBack implements MethodInterceptor {
      */
     private List<AfterInvoker> afterInvokers;
 
-
     private List<FinallyInvoker> finallyInvokers;
 
-    /**
-     * 目标代理对象，反射调用时，时调用该对象
-     */
     private Object target;
 
     public ProxyCallBack(Object target) {
@@ -66,16 +62,12 @@ public class ProxyCallBack implements MethodInterceptor {
             }
             return result;
         } catch (Throwable throwable) {
-            Object errorResult = null;
             if(throwableInvokers != null && throwableInvokers.size() > 0) {
                 for(ThrowableInvoker th : throwableInvokers) {
-                    errorResult = th.throwable(proxyObj, this.target, method, methodArgs, throwable);
+                    th.throwable(proxyObj, this.target, method, methodArgs, throwable);
                 }
             }
-           /* if(throwable != null) {
-               throw new RuntimeException(throwable.getCause());
-            }*/
-            return errorResult;
+            throw new RuntimeException(throwable.getCause());
         } finally {
             if(finallyInvokers != null && finallyInvokers.size() > 0) {
                 for (FinallyInvoker finallyInvoker : finallyInvokers) {

@@ -7,7 +7,6 @@ import com.jizhi.geektime.projects.user.transaction.annotation.LocalTransactiona
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.Map;
 
 /**
