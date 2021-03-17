@@ -14,8 +14,8 @@ import java.util.List;
 
 /**
  * 基于数据库的用户存储实现
- * 2021/3/2
- * jizhi7
+ * @author jizhi7
+ * @since 1.0
  **/
 public class DatabaseUserRepository extends AbstractDatabaseRepository implements UserRepository {
 
@@ -55,7 +55,6 @@ public class DatabaseUserRepository extends AbstractDatabaseRepository implement
     public Collection<User> getAll() {
         String QUERY_ALL_USERS_DML_SQL =
                 "SELECT id,name,password,email,phoneNumber FROM users";
-
         return executeQuery(QUERY_ALL_USERS_DML_SQL, hh, super.THROWABLE_HANDLER);
     }
 

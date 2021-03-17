@@ -54,4 +54,6 @@ public interface IUserService {
     User queryUserByNameAndPassword(String userName, String password);
 
     Collection<User> queryAll();
+
+    void test();
 }
