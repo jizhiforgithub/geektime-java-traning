@@ -1,12 +1,15 @@
 package com.jizhi.geektime.web.mvc;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jizhi.geektime.configuration.microprofile.config.DefaultConfigProviderResolver;
+import com.jizhi.geektime.context.ComponentContext;
 import com.jizhi.geektime.ioc.Container;
 import com.jizhi.geektime.web.mvc.controller.Controller;
 import com.jizhi.geektime.web.mvc.controller.PageController;
 import com.jizhi.geektime.web.mvc.controller.RestController;
 import com.jizhi.geektime.web.validator.ValidatorDelegate;
 import org.apache.commons.lang.StringUtils;
+import org.eclipse.microprofile.config.Config;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -37,7 +40,7 @@ import java.util.stream.Stream;
  * @author jizhi7
  * @since 1.0
  **/
-public class FrontControllerServlet extends HttpServlet implements Container {
+public class FrontControllerServlet extends HttpServlet  {
 
 
     /**
@@ -50,6 +53,8 @@ public class FrontControllerServlet extends HttpServlet implements Container {
      */
     private Map<String, HandlerMethodInfo> handleMethodInfoMapping = new HashMap<>();
 
+    private ComponentContext componentContext;
+
     /**
      * servlet 框架的初始化servlet方法
      *
@@ -58,8 +63,8 @@ public class FrontControllerServlet extends HttpServlet implements Container {
      */
     @Override
     public void init(ServletConfig config) throws ServletException {
-        Container container = (Container) config.getServletContext().getAttribute("com.jizhi.geektime.projects.user.ioc.IoCContainer");
-        setParentContainer(container);
+        componentContext = (ComponentContext) config.getServletContext().getAttribute("com.jizhi.geektime.context.ClassicComponentContext");
+        //setParentContainer(container);
         initHandleMethods();
     }
 
@@ -73,6 +78,8 @@ public class FrontControllerServlet extends HttpServlet implements Container {
      */
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.setAttribute(Config.class.getName(), DefaultConfigProviderResolver.instance().getConfig());
 
         // 不包含应用上下文的路径
         String requestURI = req.getRequestURI();
@@ -130,6 +137,8 @@ public class FrontControllerServlet extends HttpServlet implements Container {
                 parameters[i] = req;
             } else if (parameterType.equals(HttpServletResponse.class)) {
                 parameters[i] = resp;
+            } else if(parameterType.equals(Config.class)) {
+                parameters[i] = DefaultConfigProviderResolver.instance().getConfig();
             } else {
                 Object obj = convertRequestParamsToEntity(req.getParameterMap(), parameterType);
                 parameters[i] = obj;
@@ -310,24 +319,20 @@ public class FrontControllerServlet extends HttpServlet implements Container {
         return supportedHttpMethods;
     }
 
-    @Override
+    //@Override
     public Object getObject(String name) {
-        Object obj = controllersMapping.get(name);
-        if (obj == null) {
-            obj = getParentContainer().getObject(name);
-        }
-        return obj;
+        return componentContext.getComponent(name);
     }
 
     private Container parentContainer;
 
-    @Override
-    public Container getParentContainer() {
-        return this.parentContainer;
-    }
-
-    @Override
-    public void setParentContainer(Container container) {
-        this.parentContainer = container;
-    }
+//    @Override
+//    public Container getParentContainer() {
+//        return this.parentContainer;
+//    }
+//
+//    @Override
+//    public void setParentContainer(Container container) {
+//        this.parentContainer = container;
+//    }
 }

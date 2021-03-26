@@ -13,7 +13,6 @@ import javax.servlet.annotation.WebListener;
  * @author jizhi7
  * @since 1.0
  **/
-@WebListener
 public class DBConnectionInitializerListener implements ServletContextListener {
 
 

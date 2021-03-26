@@ -1,5 +1,6 @@
 com\jizhi\geektime\web\mvc\controller\Controller.class
 com\jizhi\geektime\ioc\Container.class
+com\jizhi\test\T.class
 com\jizhi\geektime\web\mvc\controller\RestController.class
 com\jizhi\mybatis\SqlSessionFactory.class
 com\jizhi\geektime\web\validator\ValidatorDelegate.class

@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="GBK"?>
+<!--<web-app xmlns="http://java.sun.com/xml/ns/javaee"-->
+<!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--xsi:schemaLocation="http://java.sun.com/xml/ns/javaee-->
+<!--http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"-->
+<!--metadata-complete="true" version="2.5">-->
+<!--<?xml version="1.0" encoding="GBK"?>-->
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-         metadata-complete="true" version="2.5">
+                           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
 
-    <listener>
+   <!-- <listener>
         <listener-class>com.jizhi.geektime.projects.user.web.listener.DBConnectionInitializerListener</listener-class>
     </listener>
     <listener>
         <listener-class>com.jizhi.geektime.projects.user.web.listener.TestListener</listener-class>
-    </listener>
+    </listener>-->
+
+    <context-param>
+        <param-name>hello</param-name>
+        <param-value>world</param-value>
+    </context-param>
 
     <servlet>
         <servlet-name>default</servlet-name>

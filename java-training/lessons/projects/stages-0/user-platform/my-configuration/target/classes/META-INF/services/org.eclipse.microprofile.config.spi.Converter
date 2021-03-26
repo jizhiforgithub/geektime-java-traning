@@ -1,0 +1,11 @@
+com.jizhi.geektime.configuration.microprofile.config.converter.BigDecimalConverter
+com.jizhi.geektime.configuration.microprofile.config.converter.BigIntegerConverter
+com.jizhi.geektime.configuration.microprofile.config.converter.BooleanConverter
+com.jizhi.geektime.configuration.microprofile.config.converter.ByteConverter
+com.jizhi.geektime.configuration.microprofile.config.converter.CharacterConverter
+com.jizhi.geektime.configuration.microprofile.config.converter.DoubleConverter
+com.jizhi.geektime.configuration.microprofile.config.converter.FloatConverter
+com.jizhi.geektime.configuration.microprofile.config.converter.IntegerConverter
+com.jizhi.geektime.configuration.microprofile.config.converter.LongConverter
+com.jizhi.geektime.configuration.microprofile.config.converter.ShortConverter
+com.jizhi.geektime.configuration.microprofile.config.converter.StringConverter

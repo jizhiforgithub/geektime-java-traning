@@ -13,6 +13,8 @@
     <modules>
         <module>my-web-mvc</module>
         <module>user-web</module>
+        <module>my-configuration</module>
+        <module>my-dependency-injection</module>
     </modules>
 
     <properties>
@@ -39,6 +41,8 @@
         <cglib.version>2.2.2</cglib.version>
         <hibernate-validator.version>5.3.6.Final</hibernate-validator.version>
         <javax.el.version>3.0.0</javax.el.version>
+
+        <junit.version>4.12</junit.version>
 
         <!-- Maven Plugins 版本 -->
         <maven.compiler.version>3.8.1</maven.compiler.version>
@@ -135,6 +139,13 @@
                 <groupId>org.glassfish</groupId>
                 <artifactId>javax.el</artifactId>
                 <version>${javax.el.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

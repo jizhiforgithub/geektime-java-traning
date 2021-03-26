@@ -1,6 +1,8 @@
 package com.jizhi.geektime.projects.user.repository;
 
+import com.jizhi.geektime.context.ClassicComponentContext;
 import com.jizhi.geektime.function.ThrowableFunction;
+import com.jizhi.geektime.projects.user.sql.DBConnectionManager;
 import com.jizhi.geektime.projects.user.transaction.TransactionalCallBack;
 import com.jizhi.geektime.projects.user.utils.MD5;
 import org.apache.commons.io.IOUtils;
@@ -123,8 +125,10 @@ public abstract class AbstractDatabaseRepository {
     }
 
     protected Connection getConnection() {
-        return TransactionalCallBack.connectionThreadLocal.get();
-//        return dbConnectionManager.getConnection();
+//        return TransactionalCallBack.connectionThreadLocal.get();
+        ClassicComponentContext componentContext = ClassicComponentContext.getInstance();
+        DBConnectionManager dbConnectionManager = (DBConnectionManager)componentContext.getComponent("bean/DBConnectionManager");
+        return dbConnectionManager.getConnection();
     }
 
 

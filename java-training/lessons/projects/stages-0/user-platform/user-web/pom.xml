@@ -21,10 +21,28 @@
             <version>${revision}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.jizhi.geektime</groupId>
+            <artifactId>my-configuration</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jizhi.geektime</groupId>
+            <artifactId>my-dependency-injection</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
         <!-- Servlet API -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -54,11 +72,6 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
         </dependency>
@@ -85,6 +98,13 @@
             <version>1.6.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -98,25 +118,22 @@
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <port>8080</port>
-                    <path>/</path>
-                    <uriEncoding>UTF-8</uriEncoding>
-                    <useNaming>true</useNaming>
-                </configuration>
-                 <executions>
-                     <execution>
-                         <id>tomcat-run</id>
-                         <goals>
-                             <!-- 最终打包成可执行的jar包 -->
-                             <goal>exec-war-only</goal>
-                         </goals>
-                         <phase>package</phase>
-                     </execution>
-                 </executions>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <id>tomcat-run</id>
+                        <goals>
+                            <!-- 最终打包成可执行的jar包 -->
+                            <goal>exec-war-only</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <!-- ServletContext 路径 -->
+                            <path>/</path>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
-
         </plugins>
     </build>
 </project>

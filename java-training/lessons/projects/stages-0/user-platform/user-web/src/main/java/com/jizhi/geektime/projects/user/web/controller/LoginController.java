@@ -3,6 +3,8 @@ package com.jizhi.geektime.projects.user.web.controller;
 import com.jizhi.geektime.projects.user.domain.User;
 import com.jizhi.geektime.projects.user.service.IUserService;
 import com.jizhi.geektime.web.mvc.controller.RestController;
+import org.eclipse.microprofile.config.Config;
+import org.eclipse.microprofile.config.spi.ConfigProviderResolver;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +13,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -57,6 +58,13 @@ public class LoginController implements RestController {
     public String test() {
         userService.test();
         return "ok";
+    }
+
+    @Path("/hello")
+    @GET
+    public Object hello(HttpServletRequest request, Config config) {
+        request.getServletContext().getAttribute(Config.class.getName());
+        return ConfigProviderResolver.instance().getConfig().getValue("hello", String.class);
     }
 
 }
