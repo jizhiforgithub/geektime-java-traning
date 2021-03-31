@@ -22,7 +22,7 @@ public class ServletContextConfigInitializer implements ServletContextListener {
         ServletContext servletContext = servletContextEvent.getServletContext();
         ServletContextConfigSource servletContextConfigSource = new ServletContextConfigSource(servletContext);
 
-       // ClassLoader classLoader = servletContext.getClassLoader();
+        //ClassLoader classLoader = servletContext.getClassLoader();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         ConfigProviderResolver configProvider = ConfigProviderResolver.instance();
         ConfigBuilder configBuilder = configProvider.getBuilder();

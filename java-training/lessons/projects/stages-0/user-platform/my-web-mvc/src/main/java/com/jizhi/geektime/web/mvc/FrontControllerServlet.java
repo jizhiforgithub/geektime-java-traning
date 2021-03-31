@@ -8,6 +8,7 @@ import com.jizhi.geektime.web.mvc.controller.Controller;
 import com.jizhi.geektime.web.mvc.controller.PageController;
 import com.jizhi.geektime.web.mvc.controller.RestController;
 import com.jizhi.geektime.web.validator.ValidatorDelegate;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.microprofile.config.Config;
 
@@ -19,8 +20,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -37,10 +40,11 @@ import java.util.stream.Stream;
 
 /**
  * MVC框架的请求调度类
+ *
  * @author jizhi7
  * @since 1.0
  **/
-public class FrontControllerServlet extends HttpServlet  {
+public class FrontControllerServlet extends HttpServlet {
 
 
     /**
@@ -118,9 +122,10 @@ public class FrontControllerServlet extends HttpServlet  {
 
     /**
      * restController 类的方法执行
-     * @param req 请求
-     * @param resp 响应
-     * @param controller restController
+     *
+     * @param req               请求
+     * @param resp              响应
+     * @param controller        restController
      * @param handlerMethodInfo 方法信息
      * @throws IllegalAccessException
      * @throws InvocationTargetException
@@ -131,23 +136,43 @@ public class FrontControllerServlet extends HttpServlet  {
         RestController restController = RestController.class.cast(controller);
         Class<?>[] parameterTypes = handlerMethodInfo.getHandlerMethod().getParameterTypes();
         Object[] parameters = new Object[parameterTypes.length];
+        Annotation[][] parameterAnnotations = handlerMethodInfo.getHandlerMethod().getParameterAnnotations();
         for (int i = 0; i < parameterTypes.length; i++) {
             Class<?> parameterType = parameterTypes[i];
+            Annotation[] parameterAnnotation = parameterAnnotations[i];
             if (parameterType.equals(HttpServletRequest.class)) {
                 parameters[i] = req;
             } else if (parameterType.equals(HttpServletResponse.class)) {
                 parameters[i] = resp;
-            } else if(parameterType.equals(Config.class)) {
+            } else if (parameterType.equals(Config.class)) {
                 parameters[i] = DefaultConfigProviderResolver.instance().getConfig();
             } else {
-                Object obj = convertRequestParamsToEntity(req.getParameterMap(), parameterType);
-                parameters[i] = obj;
+                List<? extends Class<? extends Annotation>> collect = Stream.of(parameterAnnotation).map(an -> an.annotationType()).collect(Collectors.toList());
+                if (collect.contains(BeanParam.class)) {
+                    Object obj = null;
+                    String encoding = req.getCharacterEncoding() == null ? "utf-8" : req.getCharacterEncoding();
+                    String mediaType = req.getHeader("content-type") == null ? MediaType.APPLICATION_JSON : req.getHeader("content-type");
+                    String body = IOUtils.toString(req.getInputStream(), encoding);
+                    if (String.class.equals(parameterType)) {
+                       obj = body;
+                    } else {
+                        switch (mediaType) {
+                            case MediaType.APPLICATION_JSON:
+                                obj = JSONObject.toJavaObject(JSONObject.parseObject(body), parameterType);
+                                break;
+                        }
+                    }
+                    parameters[i] = obj;
+                } else {
+                    Object obj = convertRequestParamsToEntity(req.getParameterMap(), parameterType);
+                    parameters[i] = obj;
+                }
             }
         }
         Map<String, String> error = validateBean(handlerMethodInfo.getHandlerMethod(), parameters);
         Parameter[] methodParameters = handlerMethodInfo.getHandlerMethod().getParameters();
-        for(int i=0; i<methodParameters.length; i++) {
-            if("error".equals(methodParameters[i].getName()) &&
+        for (int i = 0; i < methodParameters.length; i++) {
+            if ("error".equals(methodParameters[i].getName()) &&
                     Map.class.isAssignableFrom(methodParameters[i].getType())) {
                 parameters[i] = error;
                 break;
@@ -175,6 +200,7 @@ public class FrontControllerServlet extends HttpServlet  {
 
     /**
      * 参数校验
+     *
      * @param handlerMethod
      * @param parameters
      */
@@ -182,17 +208,17 @@ public class FrontControllerServlet extends HttpServlet  {
         Map<String, String> error = new HashMap<>();
         Annotation[][] parameterAnnotations = handlerMethod.getParameterAnnotations();
         ValidatorDelegate validatorDelegate = (ValidatorDelegate) getObject("bean/ValidatorDelegate");
-        for(int i=0; i<parameters.length; i++) {
+        for (int i = 0; i < parameters.length; i++) {
             Annotation[] annotations = parameterAnnotations[i];
             List<? extends Class<? extends Annotation>> an = Stream.of(annotations).map(a -> a.getClass()).collect(Collectors.toList());
             boolean isValidator = false;
             for (Class<? extends Annotation> aClass : an) {
-                if(Valid.class.isAssignableFrom(aClass)) {
+                if (Valid.class.isAssignableFrom(aClass)) {
                     isValidator = true;
                     break;
                 }
             }
-            if(isValidator) {
+            if (isValidator) {
                 error.putAll(validatorDelegate.validate(parameters[i]));
             }
         }
@@ -201,8 +227,9 @@ public class FrontControllerServlet extends HttpServlet  {
 
     /**
      * PageController的方法的执行
-     * @param req 请求
-     * @param resp 响应
+     *
+     * @param req        请求
+     * @param resp       响应
      * @param controller pageController
      * @throws Throwable
      */
@@ -219,13 +246,14 @@ public class FrontControllerServlet extends HttpServlet  {
 
     /**
      * 将 HttpServletRequest 请求中的参数，转换为对应的实体类
-     * @param parameterMap 请求参数Map
+     *
+     * @param parameterMap  请求参数Map
      * @param parameterType 要转换的对象的类型
      * @return 转换后的对象
      */
     private Object convertRequestParamsToEntity(Map<String, String[]> parameterMap, Class<?> parameterType) {
         try {
-            if(parameterType.isArray() || Collection.class.isAssignableFrom(parameterType) ||
+            if (parameterType.isArray() || Collection.class.isAssignableFrom(parameterType) ||
                     Map.class.isAssignableFrom(parameterType)) {
                 // TODO
                 return null;

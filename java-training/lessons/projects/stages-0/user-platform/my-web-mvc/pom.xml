@@ -31,7 +31,7 @@
         <dependency>
             <groupId>com.jizhi.geektime</groupId>
             <artifactId>my-dependency-injection</artifactId>
-            <version>v1-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
 
         <!-- JAX-RS API -->
@@ -53,6 +53,11 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
         </dependency>
     </dependencies>
 

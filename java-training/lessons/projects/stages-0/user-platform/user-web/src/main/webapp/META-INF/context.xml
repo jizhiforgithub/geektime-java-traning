@@ -32,7 +32,36 @@
 			  type="com.jizhi.geektime.configuration.microprofile.JavaEEConfigProviderResolver"
 			  factory="org.apache.naming.factory.BeanFactory" />-->
 
+	<Resource name="jms/activemq-factory" auth="Container"
+			  type="org.apache.activemq.ActiveMQConnectionFactory"
+			  description="JMS Connection Factory"
+			  factory="org.apache.activemq.jndi.JNDIReferenceFactory"
+			  brokerURL="vm://localhost"
+			  brokerName="LocalActiveMQBroker"
+			  useEmbeddedBroker="false"	/>
 
+	<Resource name="jms/activemq-topic" auth="Container"
+			  type="org.apache.activemq.command.ActiveMQTopic"
+			  factory="org.apache.activemq.jndi.JNDIReferenceFactory"
+			  physicalName="activemq-topic" />
+
+	<Resource name="jms/producer" auth="Container"
+			  type="javax.jms.MessageProducer"
+			  factory="com.jizhi.geektime.projects.user.message.MessageProducerJndiFactory"/>
+
+	<Resource name="jms/config" auth="Container"
+			  type="com.jizhi.geektime.projects.user.message.JmsConfig"
+			  connectionFactoryJndiName="activemq-factory"
+			  queueName="activemq-topic1"
+			  factory="org.apache.naming.factory.BeanFactory" />
+
+	<Resource name="jms/consumer" auth="Container"
+			  type="javax.jms.MessageConsumer"
+			  factory="com.jizhi.geektime.projects.user.message.MessageConsumerJndiFactory" />
+
+	<Resource name="bean/jmsService" auth="Container"
+			  type="com.jizhi.geektime.projects.user.service.JmsService"
+			  factory="org.apache.naming.factory.BeanFactory" />
 
 	<Environment name="maxVal" value="10" type="java.lang.Integer" override="false"/>
 

@@ -82,6 +82,7 @@ public class ClassicComponentContext implements ComponentContext {
         initEnvContext();
         instantiateComponents();
         initializeComponents();
+        // 注册shutDownHook，在关闭之前执行一些资源释放
         registerShutdownHook();
     }
 
@@ -113,19 +114,28 @@ public class ClassicComponentContext implements ComponentContext {
      * </ol>
      */
     protected void initializeComponents() {
-        componentsCache.values().forEach(component -> {
-            Class<?> componentClass = component.getClass();
-            // 注入阶段 - {@link Resource}
-            injectComponents(component, componentClass);
-            // 查询候选方法
-            List<Method> candidateMethods = findCandidateMethods(componentClass);
-            // 初始阶段 - {@link PostConstruct}
-            processPostConstruct(component, candidateMethods);
-            // 本阶段处理 {@link PreDestroy} 方法元数据
-            processPreDestroyMetadata(component, candidateMethods);
-        });
+        componentsCache.values().forEach(this::initializeComponent);
     }
 
+    /**
+     * 初始化组件（支持 Java 标准 Commons Annotation 生命周期）
+     * <ol>
+     *  <li>注入阶段 - {@link Resource}</li>
+     *  <li>初始阶段 - {@link PostConstruct}</li>
+     *  <li>销毁阶段 - {@link PreDestroy}</li>
+     * </ol>
+     */
+    public void initializeComponent(Object component) {
+        Class<?> componentClass = component.getClass();
+        // 注入阶段 - {@link Resource}
+        injectComponent(component, componentClass);
+        // 查询候选方法
+        List<Method> candidateMethods = findCandidateMethods(componentClass);
+        // 初始阶段 - {@link PostConstruct}
+        processPostConstruct(component, candidateMethods);
+        // 本阶段处理 {@link PreDestroy} 方法元数据
+        processPreDestroyMetadata(component, candidateMethods);
+    }
 
     /**
      * 获取组件类中的候选方法
@@ -141,16 +151,26 @@ public class ClassicComponentContext implements ComponentContext {
                 .collect(Collectors.toList());
     }
 
-
+    /**
+     * 注册一个 shutDownHook
+     */
     private void registerShutdownHook() {
-
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             processPreDestroy();
 
         }));
     }
 
-    private void injectComponents(Object component, Class<?> componentClass) {
+    public void injectComponent(Object component) {
+        injectComponent(component, component.getClass());
+    }
+
+    /**
+     * 依赖注入组件
+     * @param component
+     * @param componentClass
+     */
+    protected void injectComponent(Object component, Class<?> componentClass) {
         Stream.of(componentClass.getDeclaredFields())
                 .filter(field -> {
                     int mods = field.getModifiers();
@@ -169,6 +189,11 @@ public class ClassicComponentContext implements ComponentContext {
         });
     }
 
+    /**
+     * 执行后置处理器
+     * @param component
+     * @param candidateMethods
+     */
     private void processPostConstruct(Object component, List<Method> candidateMethods) {
         candidateMethods
                 .stream()
