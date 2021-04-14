@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.jizhi.geektime</groupId>
+    <artifactId>user-platform</artifactId>
+    <version>${revision}</version>
+  </parent>
+  <groupId>com.jizhi.geektime</groupId>
+  <artifactId>my-reactive-messaging</artifactId>
+  <version>v1-SNAPSHOT</version>
+  <name>my-reactive-messaging</name>
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.microprofile.reactive.messaging</groupId>
+      <artifactId>microprofile-reactive-messaging-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.enterprise</groupId>
+      <artifactId>cdi-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-all</artifactId>
+    </dependency>
+  </dependencies>
+  <build />
+</project>

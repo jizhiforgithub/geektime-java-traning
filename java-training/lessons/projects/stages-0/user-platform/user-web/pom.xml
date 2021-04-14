@@ -105,6 +105,25 @@
             <scope>provided</scope>
         </dependency>-->
 
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <!-- 运行时需要 -->
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <!-- 运行时需要 -->
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <!-- 运行时需要 -->
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

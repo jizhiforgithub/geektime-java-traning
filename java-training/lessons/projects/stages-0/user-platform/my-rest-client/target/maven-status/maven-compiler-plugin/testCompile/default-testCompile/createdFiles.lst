@@ -1,0 +1,5 @@
+com\jizhi\geektime\rest\util\URLUtilsTest.class
+com\jizhi\geektime\rest\demo\HttpURLConnectionDemo.class
+com\jizhi\geektime\rest\demo\RestClientDemo.class
+com\jizhi\geektime\rest\core\DefaultUriBuilderTest.class
+com\jizhi\geektime\rest\util\Maps.class

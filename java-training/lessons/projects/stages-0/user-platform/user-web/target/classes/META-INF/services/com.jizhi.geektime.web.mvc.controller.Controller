@@ -1,0 +1,4 @@
+com.jizhi.geektime.projects.user.web.controller.HelloWordController
+com.jizhi.geektime.projects.user.web.controller.LoginController
+com.jizhi.geektime.projects.user.web.controller.RestClientTestController
+com.jizhi.geektime.projects.user.web.controller.JmsController
