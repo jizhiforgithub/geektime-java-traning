@@ -5,11 +5,7 @@ package com.jizhi.geektime.serialize;
  * @author jizhi7
  * @since 1.0
  **/
-public class SerializeProvider {
+public interface SerializeProvider {
 
-    private static CompositeSerialize compositeSerialize = new CompositeSerialize();
-
-    public static DataSerialize getSerialize() {
-        return compositeSerialize;
-    }
+    DataSerialize getSerialize();
 }
