@@ -53,7 +53,7 @@ public interface IUserService {
      */
     User queryUserByNameAndPassword(String userName, String password);
 
-    Collection<User> queryAll();
+    /*Collection<User> queryAll();
 
-    void test();
+    void test();*/
 }

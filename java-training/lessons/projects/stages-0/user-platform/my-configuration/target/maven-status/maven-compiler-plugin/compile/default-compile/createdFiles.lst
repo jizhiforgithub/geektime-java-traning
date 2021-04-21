@@ -28,6 +28,7 @@ com\jizhi\geektime\configuration\jndi\Demo.class
 com\jizhi\geektime\configuration\microprofile\source\servlet\ServletContextConfigInitializer.class
 com\jizhi\geektime\configuration\perferences\PreferencesDemo.class
 com\jizhi\geektime\configuration\microprofile\config\converter\AbstractConverter.class
+com\jizhi\geektime\configuration\microprofile\source\servlet\ServletConfigSource.class
 com\jizhi\geektime\configuration\microprofile\config\converter\IntegerConverter.class
 com\jizhi\geektime\configuration\microprofile\config\converter\BigDecimalConverter.class
 com\jizhi\geektime\configuration\microprofile\source\DynamicConfigSource.class

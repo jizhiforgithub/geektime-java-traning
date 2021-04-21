@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.jizhi.geektime.cache.AbstractCache;
 import com.jizhi.geektime.cache.ExpirableEntry;
+import com.jizhi.geektime.serialize.CacheSerialize;
 import com.jizhi.geektime.serialize.SerializeProvider;
 import io.lettuce.core.api.sync.RedisCommands;
 
@@ -62,7 +63,7 @@ public class LettuceRedisCache<K extends Serializable, V extends Serializable> e
             throw new CacheException(e);
         }
         return obj;*/
-        return (T) SerializeProvider.getSerialize().deserialize(str, clazz);
+        return (T) CacheSerialize.getProvider().getSerialize().deserialize(str, clazz);
     }
 
     /**
@@ -79,7 +80,7 @@ public class LettuceRedisCache<K extends Serializable, V extends Serializable> e
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }*/
-       return SerializeProvider.getSerialize().serialize(value, String.class);
+       return CacheSerialize.getProvider().getSerialize().serialize(value, String.class);
     }
 
     @Override

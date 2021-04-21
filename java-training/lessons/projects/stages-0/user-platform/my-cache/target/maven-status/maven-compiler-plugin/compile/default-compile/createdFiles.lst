@@ -1,6 +1,7 @@
 com\jizhi\geektime\cache\event\GenericCacheEntryEvent.class
 com\jizhi\geektime\cache\configuration\ImmutableCompleteConfiguration.class
 com\jizhi\geektime\redis\LettuceRedisCacheManager.class
+com\jizhi\geektime\serialize\DefaultCacheSerializeProvider.class
 com\jizhi\geektime\serialize\DataSerialize.class
 com\jizhi\geektime\serialize\CompositeSerialize.class
 com\jizhi\geektime\redis\LettuceRedisCache.class
@@ -17,6 +18,7 @@ com\jizhi\geektime\cache\AbstractCacheManager.class
 com\jizhi\geektime\cache\ExpirableEntry.class
 com\jizhi\geektime\cache\configuration\ConfigurationUtils.class
 com\jizhi\geektime\serialize\JackSonSerialize.class
+com\jizhi\geektime\serialize\CacheSerialize.class
 com\jizhi\geektime\cache\manager\CacheMXBeanAdapter.class
 com\jizhi\geektime\serialize\DefaultByteArraySerialize.class
 com\jizhi\geektime\serialize\SerializeProvider.class

@@ -2,7 +2,6 @@ package com.jizhi.geektime.web.mvc;
 
 import com.alibaba.fastjson.JSONObject;
 import com.jizhi.geektime.configuration.microprofile.config.DefaultConfigProviderResolver;
-import com.jizhi.geektime.context.ComponentContext;
 import com.jizhi.geektime.ioc.Container;
 import com.jizhi.geektime.web.mvc.controller.Controller;
 import com.jizhi.geektime.web.mvc.controller.PageController;
@@ -57,7 +56,7 @@ public class FrontControllerServlet extends HttpServlet {
      */
     private Map<String, HandlerMethodInfo> handleMethodInfoMapping = new HashMap<>();
 
-    private ComponentContext componentContext;
+    //private ComponentContext componentContext;
 
     /**
      * servlet 框架的初始化servlet方法
@@ -67,9 +66,71 @@ public class FrontControllerServlet extends HttpServlet {
      */
     @Override
     public void init(ServletConfig config) throws ServletException {
-        componentContext = (ComponentContext) config.getServletContext().getAttribute("com.jizhi.geektime.context.ClassicComponentContext");
+        //componentContext = (ComponentContext) config.getServletContext().getAttribute("com.jizhi.geektime.context.ClassicComponentContext");
         //setParentContainer(container);
         initHandleMethods();
+    }
+
+    /**
+     * 读取所有的 {@link RestController} 的 @Path 注解元信息
+     * 利用 ServiceLoader 技术(Java SPI) 查找所有的RestController
+     * 需要在 META-INF/services 下新建一个文件，以接口的全限定名为文件名，内容为实现类的全限定名。
+     */
+    private void initHandleMethods() {
+        try {
+            // 加载SPI配置的Controller
+            for (Controller controller : ServiceLoader.load(Controller.class)) {
+                Class<?> controllerClass = controller.getClass();
+                // 遍历这些Controller的所有字段，实现controller层的注入
+                /*for (Field field : controllerClass.getDeclaredFields()) {
+                    if (field.isAnnotationPresent(Resource.class)) {
+                        String name = field.getAnnotation(Resource.class).name();
+                        Object fieldVal = getObject(name);
+                        field.setAccessible(true);
+                        field.set(controller, fieldVal);
+                    }
+                }*/
+
+                // 遍历这些controller的所有public的方法，初始化方法、url映射
+                Path controllerPath = controllerClass.getAnnotation(Path.class);
+                String requestPath = controllerPath.value();
+                Method[] publicMethods = controllerClass.getMethods();
+                for (Method method : publicMethods) {
+                    Set<String> supportHttpMethods = findSupportHttpMethods(method);
+                    Path methodPath = method.getAnnotation(Path.class);
+                    if (methodPath != null) {
+                        requestPath += methodPath.value();
+                        handleMethodInfoMapping.put(requestPath, new HandlerMethodInfo(requestPath, method, supportHttpMethods));
+                    }
+                }
+                controllersMapping.put(requestPath, controller);
+            }
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    /**
+     * 读取 Method 方法上的 @Path 注解信息
+     * 将方法上的注解的http方法信息保存到一个 Set 中
+     * 如果没有相应的注解，那么默认全部支持。
+     *
+     * @param method
+     * @return
+     */
+    private Set<String> findSupportHttpMethods(Method method) {
+        Set<String> supportedHttpMethods = new LinkedHashSet<>();
+        for (Annotation annotation : method.getAnnotations()) {
+            HttpMethod httpMethod = annotation.annotationType().getAnnotation(HttpMethod.class);
+            if (httpMethod != null) {
+                supportedHttpMethods.add(httpMethod.value());
+            }
+        }
+        if (supportedHttpMethods.isEmpty()) {
+            supportedHttpMethods.addAll(Arrays.asList(HttpMethod.GET, HttpMethod.POST,
+                    HttpMethod.PUT, HttpMethod.DELETE, HttpMethod.HEAD, HttpMethod.OPTIONS));
+        }
+        return supportedHttpMethods;
     }
 
     /**
@@ -83,7 +144,7 @@ public class FrontControllerServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.setAttribute(Config.class.getName(), DefaultConfigProviderResolver.instance().getConfig());
+        //req.setAttribute(Config.class.getName(), DefaultConfigProviderResolver.instance().getConfig());
 
         // 不包含应用上下文的路径
         String requestURI = req.getRequestURI();
@@ -104,16 +165,23 @@ public class FrontControllerServlet extends HttpServlet {
                         resp.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
                         return;
                     }
+                    // 页面跳转的
                     if (controller instanceof PageController) {
                         pageControllerMethodHandle(req, resp, controller);
                         return;
-                    } else if (controller instanceof RestController) {
+                    }
+                    // REST请求的
+                    else if (controller instanceof RestController) {
                         restControllerMethodHandle(req, resp, controller, handlerMethodInfo);
                         return;
                     }
                 }
             } catch (Throwable throwable) {
-                throwable.printStackTrace();
+                if (throwable.getCause() instanceof IOException) {
+                    throw (IOException) throwable.getCause();
+                } else {
+                    throw new ServletException(throwable.getCause());
+                }
             }
         } else {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -154,7 +222,7 @@ public class FrontControllerServlet extends HttpServlet {
                     String mediaType = req.getHeader("content-type") == null ? MediaType.APPLICATION_JSON : req.getHeader("content-type");
                     String body = IOUtils.toString(req.getInputStream(), encoding);
                     if (String.class.equals(parameterType)) {
-                       obj = body;
+                        obj = body;
                     } else {
                         switch (mediaType) {
                             case MediaType.APPLICATION_JSON:
@@ -207,7 +275,8 @@ public class FrontControllerServlet extends HttpServlet {
     private Map<String, String> validateBean(Method handlerMethod, Object[] parameters) {
         Map<String, String> error = new HashMap<>();
         Annotation[][] parameterAnnotations = handlerMethod.getParameterAnnotations();
-        ValidatorDelegate validatorDelegate = (ValidatorDelegate) getObject("bean/ValidatorDelegate");
+        ValidatorDelegate validatorDelegate = null;
+        //ValidatorDelegate validatorDelegate = (ValidatorDelegate) getObject("bean/ValidatorDelegate");
         for (int i = 0; i < parameters.length; i++) {
             Annotation[] annotations = parameterAnnotations[i];
             List<? extends Class<? extends Annotation>> an = Stream.of(annotations).map(a -> a.getClass()).collect(Collectors.toList());
@@ -226,7 +295,7 @@ public class FrontControllerServlet extends HttpServlet {
     }
 
     /**
-     * PageController的方法的执行
+     * 页面跳转请求，PageController的方法的执行
      *
      * @param req        请求
      * @param resp       响应
@@ -240,6 +309,7 @@ public class FrontControllerServlet extends HttpServlet {
         if (!viewPath.startsWith("/")) {
             viewPath = "/" + viewPath;
         }
+        // 调用forward转发
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(viewPath);
         requestDispatcher.forward(req, resp);
     }
@@ -286,73 +356,14 @@ public class FrontControllerServlet extends HttpServlet {
         return null;
     }
 
-    /**
-     * 读取所有的 {@link RestController} 的 @Path 注解元信息
-     * 利用 ServiceLoader 技术(Java SPI) 查找所有的RestController
-     * 需要在 META-INF/services 下新建一个文件，以接口的全限定名为文件名，内容为实现类的全限定名。
-     */
-    private void initHandleMethods() {
-        try {
-            for (Controller controller : ServiceLoader.load(Controller.class)) {
-                Class<?> controllerClass = controller.getClass();
-                for (Field field : controllerClass.getDeclaredFields()) {
-                    if (field.isAnnotationPresent(Resource.class)) {
-                        String name = field.getAnnotation(Resource.class).name();
-                        Object fieldVal = getObject(name);
-                        field.setAccessible(true);
-                        field.set(controller, fieldVal);
-                    }
-                }
-                Path controllerPath = controllerClass.getAnnotation(Path.class);
-                String controllerRequestPath = controllerPath.value();
-                Method[] publicMethods = controllerClass.getMethods();
-                for (Method method : publicMethods) {
-                    Set<String> supportHttpMethods = findSupportHttpMethods(method);
-                    Path methodPath = method.getAnnotation(Path.class);
-                    String requestPath = controllerRequestPath;
 
-                    if (methodPath != null) {
-                        requestPath += methodPath.value();
-
-                        handleMethodInfoMapping.put(requestPath, new HandlerMethodInfo(requestPath, method, supportHttpMethods));
-                        controllersMapping.put(requestPath, controller);
-                    }
-                }
-            }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 读取 Method 方法上的 @Path 注解信息
-     * 将方法上的注解的http方法信息保存到一个 Set 中
-     * 如果没有相应的注解，那么默认全部支持。
-     *
-     * @param method
-     * @return
-     */
-    private Set<String> findSupportHttpMethods(Method method) {
-        Set<String> supportedHttpMethods = new LinkedHashSet<>();
-        for (Annotation annotation : method.getAnnotations()) {
-            HttpMethod httpMethod = annotation.annotationType().getAnnotation(HttpMethod.class);
-            if (httpMethod != null) {
-                supportedHttpMethods.add(httpMethod.value());
-            }
-        }
-        if (supportedHttpMethods.isEmpty()) {
-            supportedHttpMethods.addAll(Arrays.asList(HttpMethod.GET, HttpMethod.POST,
-                    HttpMethod.PUT, HttpMethod.DELETE, HttpMethod.HEAD, HttpMethod.OPTIONS));
-        }
-        return supportedHttpMethods;
-    }
 
     //@Override
-    public Object getObject(String name) {
-        return componentContext.getComponent(name);
-    }
+    //public Object getObject(String name) {
+   //     return componentContext.getComponent(name);
+    //}
 
-    private Container parentContainer;
+  //  private Container parentContainer;
 
 //    @Override
 //    public Container getParentContainer() {

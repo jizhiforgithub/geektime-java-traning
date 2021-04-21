@@ -29,15 +29,15 @@ public class LoginController implements RestController {
     @Path("/login")
     @POST
     public Collection<User> login() {
-        Collection<User> users = userService.queryAll();
-        return users;
+        //Collection<User> users = userService.queryAll();
+        return null;
     }
 
     @Path("/all")
     @POST @GET
     public Collection<User> all() {
-        Collection<User> users = userService.queryAll();
-        return users;
+        //Collection<User> users = userService.queryAll();
+        return null;
     }
 
     @Path("/register")
@@ -56,7 +56,7 @@ public class LoginController implements RestController {
     @Path("/test")
     @GET @POST
     public String test() {
-        userService.test();
+        //userService.test();
         return "ok";
     }
 

@@ -2,6 +2,7 @@ com\jizhi\geektime\web\mvc\controller\Controller.class
 com\jizhi\geektime\ioc\Container.class
 com\jizhi\test\T.class
 com\jizhi\geektime\web\mvc\controller\RestController.class
+com\jizhi\geektime\web\mvc\header\HeaderWriter.class
 com\jizhi\mybatis\SqlSessionFactory.class
 com\jizhi\geektime\web\validator\ValidatorDelegate.class
 com\jizhi\test\AQS$Node.class
@@ -12,4 +13,6 @@ com\jizhi\test\NIOServer.class
 com\jizhi\test\NIOClient.class
 com\jizhi\geektime\web\mvc\FrontControllerServlet.class
 com\jizhi\geektime\web\mvc\HandlerMethodInfo.class
+com\jizhi\geektime\web\mvc\header\CacheControlHeaderWriter.class
 com\jizhi\mybatis\SqlSession.class
+com\jizhi\geektime\web\mvc\header\annotation\CacheControl.class

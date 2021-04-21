@@ -19,8 +19,8 @@ public class UserService2 {
     @Resource(name = "bean/DatabaseUserRepository")
     private UserRepository userRepository;
 
-    @Resource(name = "bean/UserService")
-    private UserServiceImpl userService1;
+    //@Resource(name = "bean/UserService")
+    //private UserServiceImpl userService1;
 
     @LocalTransactional(propagation = LocalPropagation.PROPAGATION_NESTED)
     public void test2(@Valid User user2, Map<String,String> user2Errors) {

@@ -37,6 +37,11 @@
             in</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
     </form>
+    <div>
+        <%--<a href="user/gitee/login">Gitee登录</a>--%>
+        <a href="https://gitee.com/oauth/authorize?client_id=63ebd19c2e5b5d1e771d93c4cd8e9403e3da8c8f540a517726104fe836d982b7&redirect_uri=http://localhost:8080/user-web/gitee.jsp&response_type=code">Gitee登录</a>
+
+    </div>
 </div>
 
 </body>

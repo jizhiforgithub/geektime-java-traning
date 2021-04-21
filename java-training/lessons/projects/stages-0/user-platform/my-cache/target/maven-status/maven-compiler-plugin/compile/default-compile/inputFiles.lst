@@ -4,6 +4,7 @@ F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-ca
 F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-cache\src\main\java\com\jizhi\geektime\cache\KeyValueTypePair.java
 F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-cache\src\main\java\com\jizhi\geektime\serialize\CompositeSerialize.java
 F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-cache\src\main\java\com\jizhi\geektime\serialize\DefaultByteArraySerialize.java
+F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-cache\src\main\java\com\jizhi\geektime\serialize\DefaultCacheSerializeProvider.java
 F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-cache\src\main\java\com\jizhi\geektime\cache\event\ConditionalCacheEntryEventListener.java
 F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-cache\src\main\java\com\jizhi\geektime\cache\manager\CacheMXBeanAdapter.java
 F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-cache\src\main\java\com\jizhi\geektime\redis\JedisCacheManager.java
@@ -27,3 +28,4 @@ F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-ca
 F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-cache\src\main\java\com\jizhi\geektime\memory\InMemoryCacheManager.java
 F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-cache\src\main\java\com\jizhi\geektime\cache\ConfigurableCachingProvider.java
 F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-cache\src\main\java\com\jizhi\geektime\cache\integration\AbstractFallbackStorage.java
+F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\my-cache\src\main\java\com\jizhi\geektime\serialize\CacheSerialize.java

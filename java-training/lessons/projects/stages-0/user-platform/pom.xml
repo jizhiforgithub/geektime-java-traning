@@ -48,6 +48,7 @@
         <microprofile-config-api.version>2.0</microprofile-config-api.version>
         <microprofile-rest-client-api.version>2.0</microprofile-rest-client-api.version>
         <microprofile-reactive-messaging-api.version>1.0</microprofile-reactive-messaging-api.version>
+        <microprofile-fault-tolerance-api.version>3.0</microprofile-fault-tolerance-api.version>
 
 
         <!-- apache commons 相关依赖的版本 -->
@@ -73,6 +74,7 @@
         <jolokia-core.version>1.3.7</jolokia-core.version>
         <lettuce.version>6.1.0.RELEASE</lettuce.version>
         <jedis.version>3.5.2</jedis.version>
+        <commons-dbcp.version>1.4</commons-dbcp.version>
 
         <tomcat7Version>7.0.47</tomcat7Version>
 
@@ -150,6 +152,11 @@
                 <artifactId>microprofile-reactive-messaging-api</artifactId>
                 <version>${microprofile-reactive-messaging-api.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.eclipse.microprofile.fault-tolerance</groupId>
+                <artifactId>microprofile-fault-tolerance-api</artifactId>
+                <version>${microprofile-fault-tolerance-api.version}</version>
+            </dependency>
 
 
             <!-- apache commons 相关依赖的版本 -->
@@ -188,6 +195,12 @@
 
 
             <!-- 其它第三方依赖的版本 -->
+            <!-- Apache Commons DBCP -->
+            <dependency>
+                <groupId>commons-dbcp</groupId>
+                <artifactId>commons-dbcp</artifactId>
+                <version>${commons-dbcp.version}</version>
+            </dependency>
             <!-- derby 数据库 -->
             <dependency>
                 <groupId>org.apache.derby</groupId>

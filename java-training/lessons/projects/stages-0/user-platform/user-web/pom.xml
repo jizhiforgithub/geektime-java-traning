@@ -14,6 +14,11 @@
     <name>user-web</name>
     <packaging>war</packaging>
 
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.jizhi.geektime</groupId>
@@ -21,15 +26,21 @@
             <version>${revision}</version>
         </dependency>
 
-        <dependency>
+      <!--  <dependency>
             <groupId>com.jizhi.geektime</groupId>
             <artifactId>my-configuration</artifactId>
+            <version>${revision}</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.jizhi.geektime</groupId>
+            <artifactId>my-dependency-injection</artifactId>
             <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>com.jizhi.geektime</groupId>
-            <artifactId>my-dependency-injection</artifactId>
+            <artifactId>my-cache</artifactId>
             <version>${revision}</version>
         </dependency>
 
@@ -43,7 +54,12 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <scope>provided</scope>
+           <!-- <scope>provided</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
         </dependency>
 
         <dependency>
@@ -56,15 +72,9 @@
             <artifactId>commons-configuration</artifactId>
         </dependency>
 
-        <!-- micro profile -->
         <dependency>
-            <groupId>org.eclipse.microprofile.config</groupId>
-            <artifactId>microprofile-config-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
         </dependency>
 
         <dependency>
@@ -72,20 +82,45 @@
             <artifactId>derby</artifactId>
         </dependency>
 
+        <!-- Hibernate ORM Core -->
         <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
         </dependency>
 
+        <!-- Hibernate ORM JPA -->
+       <!-- <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>-->
+
+        <!-- Hibernate Validator -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
 
+        <!-- micro profile -->
+       <!-- <dependency>
+            <groupId>org.eclipse.microprofile.config</groupId>
+            <artifactId>microprofile-config-api</artifactId>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+        </dependency>
+
+
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.el</artifactId>
-            <scope>provided</scope>
+           <!-- <scope>provided</scope>-->
         </dependency>
 
         <dependency>
@@ -98,24 +133,17 @@
             <artifactId>activemq-all</artifactId>
         </dependency>
 
-        <!--<dependency>
-            <groupId>org.apache.tomcat.maven</groupId>
-            <artifactId>tomcat7-maven-plugin</artifactId>
-            <version>2.1</version>
-            <scope>provided</scope>
-        </dependency>-->
-
-        <dependency>
+       <!-- <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>
-            <!-- 运行时需要 -->
+            &lt;!&ndash; 运行时需要 &ndash;&gt;
             <scope>runtime</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
             <!-- 运行时需要 -->
-            <scope>runtime</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
@@ -134,10 +162,35 @@
         </resources>
         <plugins>
             <!-- Tomcat Maven 插件用于构建可执行 war -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
+                <executions>
+                    <execution>
+                        <id>tomcat-run</id>
+                        <goals>
+                            &lt;!&ndash;最终打包成可执行的jar包&ndash;&gt;
+                            <goal>exec-war-only</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            &lt;!&ndash;ServletContext 路径&ndash;&gt;
+                            <path>/</path>
+                            <enableNaming>true</enableNaming>
+                            <tomcatConfigurationFilesDirectory>
+                                src/main/webapp/META-INF/conf/
+                            </tomcatConfigurationFilesDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
+
+                        <!-- Tomcat 8 Maven 插件用于构建可执行 war -->
+                        <!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat8-maven-plugin -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat8-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>tomcat-run</id>
@@ -149,10 +202,22 @@
                         <configuration>
                             <!-- ServletContext 路径 -->
                             <path>/</path>
+                            <enableNaming>true</enableNaming>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+    <pluginRepositories>
+        <pluginRepository>
+            <!-- tomcat8-maven-plugin 所在仓库 -->
+            <id>Alfresco</id>
+            <name>Alfresco Repository</name>
+            <url>https://artifacts.alfresco.com/nexus/content/repositories/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

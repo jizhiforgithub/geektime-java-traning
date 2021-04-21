@@ -1,0 +1,18 @@
+----------------------------------------------------------------
+Wed Apr 21 20:39:20 CST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0178-f471-2340-000015bf4e88 
+on database directory F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\user-web\UserPlatformDB with class loader WebappClassLoader
+  context: /user-web
+  delegate: false
+----------> Parent Classloader:
+ClassRealm[plugin>org.apache.tomcat.maven:tomcat8-maven-plugin:3.0-r1756463, parent: sun.misc.Launcher$AppClassLoader@14dad5dc]
+ 
+Loaded from jar:file:/D:/.m2/my/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar!/org/apache/derby/impl/store/raw/data/BaseDataFileFactoryJ4.class
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_60-b27
+user.dir=F:\geektime\seatwork\java-training\lessons\projects\stages-0\user-platform\user-web
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

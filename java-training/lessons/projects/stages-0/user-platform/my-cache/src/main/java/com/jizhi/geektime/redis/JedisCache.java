@@ -2,6 +2,7 @@ package com.jizhi.geektime.redis;
 
 import com.jizhi.geektime.cache.AbstractCache;
 import com.jizhi.geektime.cache.ExpirableEntry;
+import com.jizhi.geektime.serialize.CacheSerialize;
 import com.jizhi.geektime.serialize.SerializeProvider;
 import redis.clients.jedis.Jedis;
 
@@ -56,7 +57,7 @@ public class JedisCache<K extends Serializable, V extends Serializable> extends 
             throw new CacheException(e);
         }
         return obj;*/
-        return (T) SerializeProvider.getSerialize().deserialize(bytes, getConfiguration().getValueType());
+        return (T) CacheSerialize.getProvider().getSerialize().deserialize(bytes, getConfiguration().getValueType());
     }
 
     /**
@@ -77,7 +78,7 @@ public class JedisCache<K extends Serializable, V extends Serializable> extends 
             throw new CacheException(e);
         }
         return bytes;*/
-        return SerializeProvider.getSerialize().serialize(value, byte[].class);
+        return CacheSerialize.getProvider().getSerialize().serialize(value, byte[].class);
     }
 
     @Override
