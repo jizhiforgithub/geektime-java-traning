@@ -19,6 +19,7 @@ import java.util.Map;
 
 /**
  * rest接口请求代理实现类
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -106,6 +107,7 @@ public class RestClientInterfaceInvocationHandler implements InvocationHandler {
 
     /**
      * 构建参数请求实体
+     *
      * @param method
      * @param args
      * @return

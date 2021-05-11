@@ -281,6 +281,7 @@ public class DefaultUriBuilder extends UriBuilder {
         }
         return uri;
     }
+
     private URI toURI() {
         URI uri = null;
         try {

@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * 通用的缓存实体事件，继承至java cache 的缓存事件
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -78,6 +79,7 @@ public class GenericCacheEntryEvent<K, V> extends CacheEntryEvent<K, V> {
 
     /**
      * 创建事件
+     *
      * @param source 源缓存
      * @param key
      * @param value
@@ -91,6 +93,7 @@ public class GenericCacheEntryEvent<K, V> extends CacheEntryEvent<K, V> {
 
     /**
      * 更新
+     *
      * @param source
      * @param key
      * @param oldValue
@@ -105,6 +108,7 @@ public class GenericCacheEntryEvent<K, V> extends CacheEntryEvent<K, V> {
 
     /**
      * 缓存过期
+     *
      * @param source
      * @param key
      * @param oldValue
@@ -118,6 +122,7 @@ public class GenericCacheEntryEvent<K, V> extends CacheEntryEvent<K, V> {
 
     /**
      * 缓存移除
+     *
      * @param source
      * @param key
      * @param oldValue

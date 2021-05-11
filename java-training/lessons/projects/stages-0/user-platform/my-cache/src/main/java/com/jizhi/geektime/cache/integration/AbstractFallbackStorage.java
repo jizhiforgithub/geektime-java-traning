@@ -9,6 +9,7 @@ import java.util.Map;
 
 /**
  * 回调存储接口 {@link FallbackStorage} 的抽象类实现
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -25,6 +26,7 @@ public abstract class AbstractFallbackStorage<K, V> implements FallbackStorage<K
 
     /**
      * 加载所有的 keys
+     *
      * @param keys
      * @return
      * @throws CacheLoaderException
@@ -40,6 +42,7 @@ public abstract class AbstractFallbackStorage<K, V> implements FallbackStorage<K
 
     /**
      * 写入所有
+     *
      * @param entries
      * @throws CacheWriterException
      */
@@ -50,6 +53,7 @@ public abstract class AbstractFallbackStorage<K, V> implements FallbackStorage<K
 
     /**
      * 删除所有的 keys
+     *
      * @param keys
      * @throws CacheWriterException
      */

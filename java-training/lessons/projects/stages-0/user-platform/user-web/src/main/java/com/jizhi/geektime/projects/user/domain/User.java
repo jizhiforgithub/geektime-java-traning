@@ -5,39 +5,40 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
-import static javax.persistence.GenerationType.AUTO;
+//import static javax.persistence.GenerationType.AUTO;
 
 /**
  * 用户领域对象
+ *
  * @author jizhi7
  * @since 1.0
  **/
-@Entity
-@Table(name = "users")
+//@Entity
+//@Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = AUTO)
+    //  @Id
+    // @GeneratedValue(strategy = AUTO)
     @NotNull
     private Long id;
 
-    @Column
+    //@Column
     @NotNull
     private String name;
 
-    @Column
+    // @Column
     @Length(min = 6, max = 32)
     private String password;
 
-    @Column
+    // @Column
     @Email
     private String email;
 
-    @Column
+    // @Column
     @PhoneNumber
     private String phoneNumber;
 

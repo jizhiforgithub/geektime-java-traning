@@ -19,6 +19,7 @@ import java.util.concurrent.Future;
 
 /**
  * Get 请求调用
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -35,7 +36,7 @@ public class HttpGetInvocation implements Invocation {
         try {
             this.url = uri.toURL();
         } catch (MalformedURLException e) {
-            throw  new RuntimeException(e);
+            throw new RuntimeException(e);
         }
         this.headers = headers;
     }
@@ -46,13 +47,14 @@ public class HttpGetInvocation implements Invocation {
     }
 
     /**
-     *  调用接口，使用 HttpUrlConnection 实现
+     * 调用接口，使用 HttpUrlConnection 实现
+     *
      * @return
      */
     @Override
     public Response invoke() {
         HttpURLConnection connection = null;
-        try{
+        try {
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(HttpMethod.GET);
             setRequestHeaders(connection);
@@ -68,6 +70,7 @@ public class HttpGetInvocation implements Invocation {
 
     /**
      * 设置请求头
+     *
      * @param connection
      */
     private void setRequestHeaders(HttpURLConnection connection) {

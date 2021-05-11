@@ -7,6 +7,7 @@ import org.eclipse.microprofile.config.spi.ConfigProviderResolver;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 /**
  * servlet 监听器
@@ -14,6 +15,7 @@ import javax.servlet.ServletContextListener;
  * @author jizhi7
  * @since 1.0
  **/
+@WebListener
 public class ServletContextConfigInitializer implements ServletContextListener {
 
     @Override

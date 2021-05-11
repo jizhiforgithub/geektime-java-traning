@@ -96,7 +96,7 @@ public class CachingTest {
         Iterator<Cache.Entry<String, Integer>> iterator = cache.iterator();
         while (iterator.hasNext()) {
             Cache.Entry<String, Integer> next = iterator.next();
-            System.out.println("key: "+ next.getKey() + ";value:" + next.getValue());
+            System.out.println("key: " + next.getKey() + ";value:" + next.getValue());
         }
         //cache.remove(key);
         //assertNull(cache.get(key));

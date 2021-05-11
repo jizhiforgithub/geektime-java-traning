@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 /**
  * 电话校验，采用中国大陆方式（11 位校验）
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -24,7 +25,7 @@ public class PhoneNumberConstraintValidator implements ConstraintValidator<Phone
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        if(value != null && !"".equals(value)) {
+        if (value != null && !"".equals(value)) {
             Matcher m = CHINA_PATTERN.matcher(value);
             return m.matches();
         }

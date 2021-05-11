@@ -1,7 +1,7 @@
 package com.jizhi.geektime.projects.user.sql;
 
 import javax.annotation.Resource;
-import javax.persistence.EntityManager;
+//import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -35,23 +35,23 @@ public class DBConnectionManager {
     //public static final String DB_CONNECTION_MANAGER_NAME = DBConnectionManager.class.getName();
 
     //@Resource(name = "jdbc/UserPlatformDB")
-   // private DataSource dataSource;
+    // private DataSource dataSource;
 
     private final Logger logger = Logger.getLogger(DBConnectionManager.class.getName());
 
     @Resource(name = "jdbc/UserPlatformDB")
     private DataSource dataSource;
 
-    @Resource(name = "bean/EntityManager")
-    private EntityManager entityManager;
+    // @Resource(name = "bean/EntityManager")
+    //private EntityManager entityManager;
 
     public DBConnectionManager() {
     }
 
-    public EntityManager getEntityManager() {
+    /*public EntityManager getEntityManager() {
         logger.info("当前 EntityManager 实现类：" + entityManager.getClass().getName());
         return entityManager;
-    }
+    }*/
 
     public Connection getConnection() {
        /* try {

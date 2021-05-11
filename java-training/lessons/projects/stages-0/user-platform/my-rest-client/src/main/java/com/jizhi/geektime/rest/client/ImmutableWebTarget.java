@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * 不可变的web对象，就是一个请求
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -34,6 +35,7 @@ public class ImmutableWebTarget implements WebTarget {
 
     /**
      * 路径
+     *
      * @param path
      * @return
      */

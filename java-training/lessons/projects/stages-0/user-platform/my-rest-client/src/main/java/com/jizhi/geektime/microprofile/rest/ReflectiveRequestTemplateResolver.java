@@ -20,6 +20,7 @@ import static com.jizhi.geektime.rest.util.PathUtils.resolvePath;
 
 /**
  * 反射请求的模板解析器
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -29,6 +30,7 @@ public class ReflectiveRequestTemplateResolver implements RequestTemplateResolve
      * 根据请求的接口类，请求方法。
      * 解析出该方法上的java.ws.rs的 *Param 注解，
      * 生成RequestTemplate
+     *
      * @param resourceClass
      * @param resourceMethod
      * @return
@@ -66,6 +68,7 @@ public class ReflectiveRequestTemplateResolver implements RequestTemplateResolve
 
     /**
      * 解析方法的入参的注解信息
+     *
      * @param resourceMethod
      * @return
      */
@@ -109,6 +112,7 @@ public class ReflectiveRequestTemplateResolver implements RequestTemplateResolve
 
     /**
      * 反射获取 *Param 注解的 value 值
+     *
      * @param paramAnnotation
      * @return
      */
@@ -125,6 +129,7 @@ public class ReflectiveRequestTemplateResolver implements RequestTemplateResolve
 
     /**
      * 获取参数上的 {@link DefaultValue} 的值
+     *
      * @param parameter
      * @return
      */
@@ -135,6 +140,7 @@ public class ReflectiveRequestTemplateResolver implements RequestTemplateResolve
 
     /**
      * 解析方法上的 {@link HttpMethod} 注解，获取Http的调用方法
+     *
      * @param resourceMethod
      * @return
      */
@@ -151,6 +157,7 @@ public class ReflectiveRequestTemplateResolver implements RequestTemplateResolve
 
     /**
      * 解析 {@link Consumes} 注解，获取对应的 MediaType
+     *
      * @param resourceClass
      * @param resourceMethod
      * @return
@@ -168,6 +175,7 @@ public class ReflectiveRequestTemplateResolver implements RequestTemplateResolve
 
     /**
      * 解析 {@link Produces} 注解，获取对应的 MediaType
+     *
      * @param resourceClass
      * @param resourceMethod
      * @return
@@ -182,6 +190,7 @@ public class ReflectiveRequestTemplateResolver implements RequestTemplateResolve
 
     /**
      * 获取 {@link Consumes} 注解，可能注解在类上，也可能在方法上
+     *
      * @param annotatedElement
      * @return
      */
@@ -191,6 +200,7 @@ public class ReflectiveRequestTemplateResolver implements RequestTemplateResolve
 
     /**
      * 获取 {@link Produces} 注解，可能注解在类上，也可能在方法上
+     *
      * @param annotatedElement
      * @return
      */
@@ -200,6 +210,7 @@ public class ReflectiveRequestTemplateResolver implements RequestTemplateResolve
 
     /**
      * 获取非空的字符数组
+     *
      * @param values
      * @return
      */

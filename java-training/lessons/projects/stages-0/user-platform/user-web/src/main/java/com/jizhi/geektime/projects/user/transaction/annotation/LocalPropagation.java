@@ -2,6 +2,7 @@ package com.jizhi.geektime.projects.user.transaction.annotation;
 
 /**
  * 事务传播级别
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -10,7 +11,7 @@ public final class LocalPropagation {
     /**
      * 默认的，如果当前没有事务就创建一个来执行，有就不创建了
      */
-    public static final int	REQUIRED = 0;
+    public static final int REQUIRED = 0;
 
     /**
      * 支持事务，当前有事务就用，没有就不用

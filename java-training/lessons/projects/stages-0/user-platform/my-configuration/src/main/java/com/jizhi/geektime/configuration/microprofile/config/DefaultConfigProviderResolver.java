@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 默认配置提供者
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -29,7 +30,7 @@ public class DefaultConfigProviderResolver extends ConfigProviderResolver {
 
     @Override
     public Config getConfig(ClassLoader loader) {
-        if(loader == null) {
+        if (loader == null) {
             loader = Thread.currentThread().getContextClassLoader();
         }
         return configRepository.computeIfAbsent(loader, this::newConfig);
@@ -41,6 +42,7 @@ public class DefaultConfigProviderResolver extends ConfigProviderResolver {
 
     /**
      * 获取数据源 builder
+     *
      * @return
      */
     @Override
@@ -54,6 +56,7 @@ public class DefaultConfigProviderResolver extends ConfigProviderResolver {
 
     /**
      * 获取 classLoader
+     *
      * @param classLoader
      * @return
      */
@@ -63,6 +66,7 @@ public class DefaultConfigProviderResolver extends ConfigProviderResolver {
 
     /**
      * 注册配置源
+     *
      * @param config
      * @param classLoader
      */
@@ -73,6 +77,7 @@ public class DefaultConfigProviderResolver extends ConfigProviderResolver {
 
     /**
      * 删除对应的配置源
+     *
      * @param config
      */
     @Override

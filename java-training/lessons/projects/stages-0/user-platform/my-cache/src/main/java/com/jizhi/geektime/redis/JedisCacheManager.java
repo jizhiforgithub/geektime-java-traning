@@ -12,6 +12,7 @@ import java.util.Properties;
 
 /**
  * redis实现的缓存管理器
+ *
  * @author jizhi7
  * @since 1.0
  **/

@@ -31,12 +31,14 @@ public @interface LocalTransactional {
 
     /**
      * 事务传播
+     *
      * @return
      */
     int propagation() default PROPAGATION_REQUIRED;
 
     /**
      * 事务隔离级别
+     *
      * @return
      * @see Connection#TRANSACTION_READ_COMMITTED
      */

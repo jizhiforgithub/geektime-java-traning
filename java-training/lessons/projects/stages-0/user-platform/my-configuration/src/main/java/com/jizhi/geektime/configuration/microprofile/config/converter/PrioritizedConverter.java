@@ -4,6 +4,7 @@ import org.eclipse.microprofile.config.spi.Converter;
 
 /**
  * 优先性的转换器，可以进行排序
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -34,6 +35,7 @@ public class PrioritizedConverter<T> implements Converter<T>, Comparable<Priorit
 
     /**
      * priority 属性越大，优先级越高
+     *
      * @param other
      * @return
      */

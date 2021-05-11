@@ -7,7 +7,7 @@ package com.jizhi.geektime.configuration.microprofile.config.converter;
 public class CharacterConverter extends AbstractConverter<Character> {
     @Override
     protected Character doConvert(String value) {
-        if(value.isEmpty()) {
+        if (value.isEmpty()) {
             return null;
         }
         return Character.valueOf(value.charAt(0));

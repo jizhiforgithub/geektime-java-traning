@@ -9,6 +9,7 @@ import static java.util.stream.Collectors.toList;
 
 /**
  * 序列化反序列化组合实现
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -51,6 +52,7 @@ public class CompositeSerialize implements DataSerialize {
 
     /**
      * 用户添加的
+     *
      * @param serialize
      */
     public void addSerializes(DataSerialize serialize) {
@@ -62,7 +64,7 @@ public class CompositeSerialize implements DataSerialize {
     public <T> T serialize(Object obj, Class resultType) {
         DataSerialize useSerialize = null;
         for (DataSerialize serialize : serializes) {
-            if(serialize.supportResultType(resultType)) {
+            if (serialize.supportResultType(resultType)) {
                 useSerialize = serialize;
                 break;
             }
@@ -74,7 +76,7 @@ public class CompositeSerialize implements DataSerialize {
     public <T> Object deserialize(T value, Class clazz) {
         DataSerialize useDeserialize = null;
         for (DataSerialize deserialize : serializes) {
-            if(deserialize.supportResultType(value.getClass())) {
+            if (deserialize.supportResultType(value.getClass())) {
                 useDeserialize = deserialize;
                 break;
             }
@@ -85,7 +87,7 @@ public class CompositeSerialize implements DataSerialize {
     @Override
     public boolean supportResultType(Class clazz) {
         for (DataSerialize serialize : serializes) {
-            if(serialize.supportResultType(clazz)) {
+            if (serialize.supportResultType(clazz)) {
                 return true;
             }
         }

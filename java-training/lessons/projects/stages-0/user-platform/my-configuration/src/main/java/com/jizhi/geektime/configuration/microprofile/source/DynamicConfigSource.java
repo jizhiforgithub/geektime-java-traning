@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * 动态数据源
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -34,6 +35,7 @@ public class DynamicConfigSource extends MapBasedConfigSource {
 
     /**
      * 异步更新数据
+     *
      * @param data
      */
     public void onUpdate(String data) {

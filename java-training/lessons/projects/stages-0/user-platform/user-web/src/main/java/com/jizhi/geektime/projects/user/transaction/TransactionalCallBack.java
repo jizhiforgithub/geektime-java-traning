@@ -113,7 +113,7 @@ public class TransactionalCallBack implements BeforeInvoker, AfterInvoker, Throw
 
 
     @Override
-    public void throwable(Object proxyObj, Object targetObj, Method method, Object[] methodArgs, Throwable throwable) throws Throwable{
+    public void throwable(Object proxyObj, Object targetObj, Method method, Object[] methodArgs, Throwable throwable) throws Throwable {
         try {
             boolean isRollback = false;
             // 目标方法执行抛出了错误，如果开启了事务，需要执行事物的回滚
@@ -150,13 +150,13 @@ public class TransactionalCallBack implements BeforeInvoker, AfterInvoker, Throw
     @Override
     public void doFinally() {
         // 当该方法时最外层的方法时，释放相应资源
-        if(nestedThreadLocal.get() == 0) {
+        if (nestedThreadLocal.get() == 0) {
             try {
-                if(connectionThreadLocal.get() != null) {
+                if (connectionThreadLocal.get() != null) {
                     connectionThreadLocal.get().close();
                 }
             } catch (SQLException e) {
-               throw new RuntimeException(e.getMessage());
+                throw new RuntimeException(e.getMessage());
             }
             connectionThreadLocal.remove();
             nestedThreadLocal.remove();

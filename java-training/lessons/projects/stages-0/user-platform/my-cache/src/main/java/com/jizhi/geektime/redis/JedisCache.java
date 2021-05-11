@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  * @author jizhi7
  * @since 1.0
  **/
-public class JedisCache<K extends Serializable, V extends Serializable> extends AbstractCache<Object,V> {
+public class JedisCache<K extends Serializable, V extends Serializable> extends AbstractCache<Object, V> {
 
     private final Jedis jedis;
 
@@ -41,6 +41,7 @@ public class JedisCache<K extends Serializable, V extends Serializable> extends 
 
     /**
      * 反序列化
+     *
      * @param bytes
      * @return
      */

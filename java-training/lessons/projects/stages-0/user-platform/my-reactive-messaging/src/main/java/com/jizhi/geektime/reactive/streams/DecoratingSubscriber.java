@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 /**
  * (Internal) Decorating {@link Subscriber}
  * 订阅者装饰
+ *
  * @param <T>
  */
 class DecoratingSubscriber<T> implements Subscriber<T> {
@@ -31,6 +32,7 @@ class DecoratingSubscriber<T> implements Subscriber<T> {
 
     /**
      * 订阅
+     *
      * @param s
      */
     @Override
@@ -40,6 +42,7 @@ class DecoratingSubscriber<T> implements Subscriber<T> {
 
     /**
      * 下一个数据
+     *
      * @param t
      */
     @Override

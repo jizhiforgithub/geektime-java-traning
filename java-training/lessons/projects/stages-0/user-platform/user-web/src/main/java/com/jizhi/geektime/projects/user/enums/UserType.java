@@ -7,7 +7,7 @@ public enum UserType {
     NORMAL;
 
     // 枚举中构造器是 private
-    UserType(){
+    UserType() {
 
     }
 

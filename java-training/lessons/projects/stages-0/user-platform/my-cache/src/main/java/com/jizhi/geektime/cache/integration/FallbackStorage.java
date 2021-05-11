@@ -6,11 +6,12 @@ import java.util.Comparator;
 
 /**
  * 回调存储接口， {@link CacheLoader} 和 {@link CacheWriter} 的共同接口
- *  加载缓存数据，写缓存数据。持久化支持存储
+ * 加载缓存数据，写缓存数据。持久化支持存储
+ *
  * @author jizhi7
  * @since 1.0
  **/
-public interface FallbackStorage<K, V> extends CacheLoader<K, V> , CacheWriter<K, V> {
+public interface FallbackStorage<K, V> extends CacheLoader<K, V>, CacheWriter<K, V> {
 
     /**
      * 回调存储优先级比较器
@@ -19,6 +20,7 @@ public interface FallbackStorage<K, V> extends CacheLoader<K, V> , CacheWriter<K
 
     /**
      * 优先级
+     *
      * @return
      */
     int getPriority();

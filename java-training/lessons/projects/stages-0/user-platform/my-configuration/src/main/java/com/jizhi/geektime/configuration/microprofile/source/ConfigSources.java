@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 /**
  * 多个配置源
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -35,7 +36,7 @@ public class ConfigSources implements Iterable<ConfigSource> {
      * 添加默认配置源
      */
     public void addDefaultSources() {
-        if(addedDefaultConfigSources) {
+        if (addedDefaultConfigSources) {
             return;
         }
         // 先添加 Java 进程的配置参数
@@ -52,7 +53,7 @@ public class ConfigSources implements Iterable<ConfigSource> {
      * 是在spi里面配置了的
      */
     public void addDiscoveredSources() {
-        if(addedDiscoveredConfigSources) {
+        if (addedDiscoveredConfigSources) {
             return;
         }
         addConfigSources(ServiceLoader.load(ConfigSource.class, classLoader));
@@ -61,6 +62,7 @@ public class ConfigSources implements Iterable<ConfigSource> {
 
     /**
      * 添加配置源
+     *
      * @param configSourceClasses 配置源对应的类可变参数
      */
     public void addConfigSources(Class<? extends ConfigSource>... configSourceClasses) {
@@ -71,6 +73,7 @@ public class ConfigSources implements Iterable<ConfigSource> {
 
     /**
      * 添加配置源
+     *
      * @param configSources 配置源可变参数
      */
     public void addConfigSources(ConfigSource... configSources) {
@@ -79,6 +82,7 @@ public class ConfigSources implements Iterable<ConfigSource> {
 
     /**
      * 添加配置源
+     *
      * @param configSources 配置源迭代器
      */
     public void addConfigSources(Iterable<ConfigSource> configSources) {
@@ -89,6 +93,7 @@ public class ConfigSources implements Iterable<ConfigSource> {
 
     /**
      * 实例化配置源
+     *
      * @param configSourceClass 配置源类
      * @return 实例化对象
      */
@@ -104,6 +109,7 @@ public class ConfigSources implements Iterable<ConfigSource> {
 
     /**
      * 配置源迭代器
+     *
      * @return
      */
     @Override
@@ -113,6 +119,7 @@ public class ConfigSources implements Iterable<ConfigSource> {
 
     /**
      * 是否已经添加了默认数据源
+     *
      * @return
      */
     public boolean isAddedDefaultConfigSources() {
@@ -121,6 +128,7 @@ public class ConfigSources implements Iterable<ConfigSource> {
 
     /**
      * 是否已经添加了发现的数据源 spi 的
+     *
      * @return
      */
     public boolean isAddedDiscoveredConfigSources() {

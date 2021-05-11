@@ -7,9 +7,13 @@ package com.jizhi.geektime.jmx.mbean;
 public interface MyMBean {
 
     String getName();
+
     void setName(String name);
+
     int getAge();
+
     void setAge(int age);
+
     String toString();
 
 }

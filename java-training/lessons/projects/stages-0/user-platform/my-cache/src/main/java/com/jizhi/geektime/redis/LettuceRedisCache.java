@@ -80,7 +80,7 @@ public class LettuceRedisCache<K extends Serializable, V extends Serializable> e
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }*/
-       return CacheSerialize.getProvider().getSerialize().serialize(value, String.class);
+        return CacheSerialize.getProvider().getSerialize().serialize(value, String.class);
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.lang.annotation.*;
 
 /**
  * 事务注解
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -15,12 +16,14 @@ public @interface LocalTransactional {
 
     /**
      * 事务传播级别
+     *
      * @return
      */
     int propagation() default LocalPropagation.REQUIRED;
 
     /**
      * 事务隔离级别
+     *
      * @return
      */
     int isolation() default LocalIsolation.DEFAULT;

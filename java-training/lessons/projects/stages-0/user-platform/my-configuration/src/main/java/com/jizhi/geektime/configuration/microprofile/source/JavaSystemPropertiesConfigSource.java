@@ -4,6 +4,7 @@ import java.util.Map;
 
 /**
  * Java 系统属性配资源
+ *
  * @author jizhi7
  * @since 1.0
  **/

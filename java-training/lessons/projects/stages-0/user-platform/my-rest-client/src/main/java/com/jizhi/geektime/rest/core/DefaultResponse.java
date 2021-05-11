@@ -85,14 +85,15 @@ public class DefaultResponse extends Response {
 
     /**
      * 将连接中的流数据映射成为一个实体对象
+     *
      * @return
      */
     @Override
     public <T> T readEntity(Class<T> entityType) {
         T entity = null;
-        try{
+        try {
             InputStream inputStream = connection.getInputStream();
-            if(String.class.equals(entityType)) {
+            if (String.class.equals(entityType)) {
                 Object value = IOUtils.toString(inputStream, encoding);
                 entity = (T) value;
             } else {

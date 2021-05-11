@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * 动态代理回调类
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -47,29 +48,29 @@ public class ProxyCallBack implements MethodInterceptor {
         try {
             Object result = null;
             // 调用前置方法
-            if(beforeInvokers != null && beforeInvokers.size() > 0) {
-                for(BeforeInvoker before : beforeInvokers) {
+            if (beforeInvokers != null && beforeInvokers.size() > 0) {
+                for (BeforeInvoker before : beforeInvokers) {
                     before.before(proxyObj, this.target, method, methodArgs);
                 }
             }
             // 调用目标对象的方法
             result = method.invoke(target, methodArgs);
             // 如果没有发生错误，调用后置方法
-            if(afterInvokers != null && afterInvokers.size() > 0) {
-                for(AfterInvoker after : afterInvokers) {
+            if (afterInvokers != null && afterInvokers.size() > 0) {
+                for (AfterInvoker after : afterInvokers) {
                     after.after(proxyObj, this.target, method, methodArgs, result);
                 }
             }
             return result;
         } catch (Throwable throwable) {
-            if(throwableInvokers != null && throwableInvokers.size() > 0) {
-                for(ThrowableInvoker th : throwableInvokers) {
+            if (throwableInvokers != null && throwableInvokers.size() > 0) {
+                for (ThrowableInvoker th : throwableInvokers) {
                     th.throwable(proxyObj, this.target, method, methodArgs, throwable);
                 }
             }
             return null;
         } finally {
-            if(finallyInvokers != null && finallyInvokers.size() > 0) {
+            if (finallyInvokers != null && finallyInvokers.size() > 0) {
                 for (FinallyInvoker finallyInvoker : finallyInvokers) {
                     finallyInvoker.doFinally();
                 }

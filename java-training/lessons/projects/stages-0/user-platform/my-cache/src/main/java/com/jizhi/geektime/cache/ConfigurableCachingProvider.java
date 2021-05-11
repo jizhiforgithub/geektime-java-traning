@@ -139,6 +139,7 @@ public class ConfigurableCachingProvider implements CachingProvider {
 
     /**
      * 生成
+     *
      * @param uri
      * @param classLoader
      * @param properties
@@ -165,6 +166,7 @@ public class ConfigurableCachingProvider implements CachingProvider {
 
     /**
      * 反射实例化一个CacheManager
+     *
      * @param uri
      * @param classLoader
      * @param properties
@@ -172,12 +174,12 @@ public class ConfigurableCachingProvider implements CachingProvider {
      */
     private CacheManager newCacheManager(URI uri, ClassLoader classLoader, Properties properties) {
         CacheManager cacheManager = null;
-        try{
+        try {
             Class<? extends AbstractCacheManager> cacheManagerClass = getCacheMangerClass(uri, classLoader, properties);
-            Class[] parameterTypes = new Class[] {CachingProvider.class, URI.class, ClassLoader.class, Properties.class};
+            Class[] parameterTypes = new Class[]{CachingProvider.class, URI.class, ClassLoader.class, Properties.class};
             Constructor<? extends AbstractCacheManager> constructor = cacheManagerClass.getConstructor(parameterTypes);
             cacheManager = constructor.newInstance(this, uri, classLoader, properties);
-        }  catch (Throwable e) {
+        } catch (Throwable e) {
             throw new CacheException(e);
         }
         return cacheManager;
@@ -185,6 +187,7 @@ public class ConfigurableCachingProvider implements CachingProvider {
 
     /**
      * 获取到CacheManager的class
+     *
      * @param uri
      * @param classLoader
      * @param properties
@@ -205,6 +208,7 @@ public class ConfigurableCachingProvider implements CachingProvider {
 
     /**
      * 获取CacheManager的实现类的全路径类名称
+     *
      * @param uri
      * @param properties
      * @return
@@ -222,6 +226,7 @@ public class ConfigurableCachingProvider implements CachingProvider {
 
     /**
      * 获取CacheManager
+     *
      * @param uri
      * @return
      */

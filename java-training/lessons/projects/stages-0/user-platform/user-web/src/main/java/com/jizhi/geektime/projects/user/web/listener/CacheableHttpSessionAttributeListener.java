@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSessionBindingEvent;
 
 /**
  * Http Session属性监听器
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -12,6 +13,7 @@ public class CacheableHttpSessionAttributeListener implements HttpSessionAttribu
 
     /**
      * 添加
+     *
      * @param event
      */
     @Override
@@ -21,6 +23,7 @@ public class CacheableHttpSessionAttributeListener implements HttpSessionAttribu
 
     /**
      * 移除
+     *
      * @param event
      */
     @Override
@@ -30,6 +33,7 @@ public class CacheableHttpSessionAttributeListener implements HttpSessionAttribu
 
     /**
      * 替换
+     *
      * @param event
      */
     @Override

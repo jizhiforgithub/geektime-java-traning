@@ -6,6 +6,7 @@ import java.util.Objects;
 
 /**
  * 缓存MXBean的适配器
+ *
  * @author jizhi7
  * @since 1.0
  **/

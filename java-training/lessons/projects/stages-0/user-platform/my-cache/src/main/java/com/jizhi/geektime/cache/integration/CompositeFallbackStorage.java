@@ -13,7 +13,8 @@ import static java.util.stream.StreamSupport.stream;
 
 /**
  * 组合了多个 {@link AbstractFallbackStorage} 的回调存储实现类，采用了组合设计模式
- *  通过 Java SPI 获取实现了 {@link AbstractFallbackStorage} 的实现类，来组合
+ * 通过 Java SPI 获取实现了 {@link AbstractFallbackStorage} 的实现类，来组合
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -43,6 +44,7 @@ public class CompositeFallbackStorage extends AbstractFallbackStorage<Object, Ob
 
     /**
      * 加载所有的回调存储实现，使用SPI方式加载
+     *
      * @param classLoader
      * @return
      */
@@ -54,6 +56,7 @@ public class CompositeFallbackStorage extends AbstractFallbackStorage<Object, Ob
 
     /**
      * 遍历当前类加载器的所有回调存储列表，调用他们来加载
+     *
      * @param key
      * @return
      * @throws CacheLoaderException
@@ -64,7 +67,7 @@ public class CompositeFallbackStorage extends AbstractFallbackStorage<Object, Ob
         for (FallbackStorage fallbackStorage : fallbackStorages) {
             value = fallbackStorage.load(key);
             // 第一个找到了，就返回
-            if(value != null) {
+            if (value != null) {
                 break;
             }
         }
@@ -73,6 +76,7 @@ public class CompositeFallbackStorage extends AbstractFallbackStorage<Object, Ob
 
     /**
      * 每个都写
+     *
      * @param entry
      * @throws CacheWriterException
      */
@@ -83,6 +87,7 @@ public class CompositeFallbackStorage extends AbstractFallbackStorage<Object, Ob
 
     /**
      * 每个都删
+     *
      * @param key
      * @throws CacheWriterException
      */

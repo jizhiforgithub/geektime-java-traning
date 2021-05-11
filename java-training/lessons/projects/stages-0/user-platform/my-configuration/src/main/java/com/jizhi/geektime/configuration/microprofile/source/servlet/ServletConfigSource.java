@@ -29,6 +29,7 @@ public class ServletConfigSource extends MapBasedConfigSource {
 
     /**
      * 从 servletConfig 中获取参数
+     *
      * @param configData
      * @throws Throwable
      */

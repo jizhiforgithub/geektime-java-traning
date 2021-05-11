@@ -27,6 +27,12 @@
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>javax.el-api</artifactId>
+                    <groupId>javax.el</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -54,11 +60,11 @@
         </dependency>
 
         <!-- testing -->
-      <!--  <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>-->
+        <!--  <dependency>
+              <groupId>junit</groupId>
+              <artifactId>junit</artifactId>
+              <scope>test</scope>
+          </dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

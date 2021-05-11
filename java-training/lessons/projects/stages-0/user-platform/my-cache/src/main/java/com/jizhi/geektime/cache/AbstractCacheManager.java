@@ -17,9 +17,10 @@ import static java.lang.String.format;
 
 /**
  * 缓存管理器的基类
+ *
  * @author jizhi7
  * @since 1.0
- * */
+ */
 public abstract class AbstractCacheManager implements CacheManager {
 
     /**
@@ -74,18 +75,19 @@ public abstract class AbstractCacheManager implements CacheManager {
 
     /**
      * 创建缓存
-     * @param cacheName 缓存名称
+     *
+     * @param cacheName     缓存名称
      * @param configuration 配置
-     * @param <K> key
-     * @param <V> val
-     * @param <C> 配置
+     * @param <K>           key
+     * @param <V>           val
+     * @param <C>           配置
      * @return
      * @throws IllegalArgumentException
      */
     @Override
     public <K, V, C extends Configuration<K, V>> Cache<K, V> createCache(String cacheName, C configuration) throws IllegalArgumentException {
         // 如果注册容器里面已经存在了，说明之前已经创建过了，不能再创建了
-        if(cacheRepository.containsKey(cacheName)) {
+        if (cacheRepository.containsKey(cacheName)) {
             throw new CacheException(format("The Cache whose name is '%s' is already existed, " +
                     "please try another name to create a new Cache.", cacheName));
         }
@@ -94,6 +96,7 @@ public abstract class AbstractCacheManager implements CacheManager {
 
     /**
      * 获取值，没有就拿默认值
+     *
      * @param cacheName
      * @param configuration
      * @param created
@@ -102,7 +105,7 @@ public abstract class AbstractCacheManager implements CacheManager {
      * @param <C>
      * @return
      */
-    protected  <V, K, C extends Configuration<K, V>> Cache<K,V> getOrCreateCache(String cacheName, C configuration, boolean created) {
+    protected <V, K, C extends Configuration<K, V>> Cache<K, V> getOrCreateCache(String cacheName, C configuration, boolean created) {
         // 判断没有关闭
         assertNotClosed();
         // 如果没有就，创建一个CacheMap
@@ -110,11 +113,12 @@ public abstract class AbstractCacheManager implements CacheManager {
 
         // 如果没有创建，就创建放进
         return cacheMap.computeIfAbsent(new KeyValueTypePair(configuration.getKeyType(), configuration.getValueType()),
-                key -> created?doCreateCache(cacheName, configuration) : null);
+                key -> created ? doCreateCache(cacheName, configuration) : null);
     }
 
     /**
      * 子类实现的创建一个缓存
+     *
      * @param cacheName
      * @param configuration
      * @param <K>
@@ -125,7 +129,7 @@ public abstract class AbstractCacheManager implements CacheManager {
     protected abstract <K, V, C extends Configuration<K, V>> Cache doCreateCache(String cacheName, C configuration);
 
     private void assertNotClosed() {
-        if(idClose()) {
+        if (idClose()) {
             throw new IllegalStateException("The CacheManager has been closed, current operation should not be invoked!");
         }
     }
@@ -136,8 +140,9 @@ public abstract class AbstractCacheManager implements CacheManager {
 
     /**
      * 获取缓存对象
+     *
      * @param cacheName 缓存名称
-     * @param keyType 缓存的K类型
+     * @param keyType   缓存的K类型
      * @param valueType 缓存的V类型
      * @param <K>
      * @param <V>
@@ -152,11 +157,12 @@ public abstract class AbstractCacheManager implements CacheManager {
 
     @Override
     public <K, V> Cache<K, V> getCache(String cacheName) {
-        return getCache(cacheName, (Class<K>)Object.class, (Class<V>)Object.class);
+        return getCache(cacheName, (Class<K>) Object.class, (Class<V>) Object.class);
     }
 
     /**
      * 获取所有的缓存对象名称
+     *
      * @return
      */
     @Override
@@ -167,6 +173,7 @@ public abstract class AbstractCacheManager implements CacheManager {
 
     /**
      * 销毁缓存
+     *
      * @param cacheName 缓存名称
      */
     @Override
@@ -176,7 +183,7 @@ public abstract class AbstractCacheManager implements CacheManager {
         assertNotClosed();
         // 移除
         Map<KeyValueTypePair, Cache> remove = cacheRepository.remove(cacheName);
-        if(remove != null) {
+        if (remove != null) {
             // 迭代移除缓存的值，执行，缓存清除，缓存关闭
             iterateCaches(remove.values(), CLEAR_CACHE_OPERATION, CLOSE_CACHE_OPERATION);
         }
@@ -184,11 +191,12 @@ public abstract class AbstractCacheManager implements CacheManager {
 
     /**
      * 迭代缓存项，执行一系列操作
-     * @param cacheItems 缓存项迭代
+     *
+     * @param cacheItems     缓存项迭代
      * @param cacheOperation 一系列操作，可变参数
      */
     protected final void iterateCaches(Iterable<Cache> cacheItems, Consumer<Cache>... cacheOperation) {
-        for(Cache cache : cacheItems) {
+        for (Cache cache : cacheItems) {
             for (Consumer<Cache> cacheConsumer : cacheOperation) {
                 try {
                     cacheConsumer.accept(cache);

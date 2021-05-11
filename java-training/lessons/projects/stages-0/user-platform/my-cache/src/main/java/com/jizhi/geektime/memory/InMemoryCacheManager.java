@@ -10,6 +10,7 @@ import java.util.Properties;
 
 /**
  * 内存类型实现的缓存管理器
+ *
  * @author jizhi7
  * @since 1.0
  **/

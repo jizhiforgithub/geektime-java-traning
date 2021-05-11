@@ -8,13 +8,14 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 /**
- *  jndi jms连接工厂类
+ * jndi jms连接工厂类
+ *
  * @author jizhi7
  * @since 1.0
  **/
 public class MessageConsumerJndiFactory implements ObjectFactory {
 
-   private JmsConfig jmsConfig;
+    private JmsConfig jmsConfig;
 
 
     @Override

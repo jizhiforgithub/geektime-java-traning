@@ -16,6 +16,7 @@ public class UserDynamicMXBean implements DynamicMBean {
 
     /**
      * 获取属性
+     *
      * @param attribute
      * @return
      * @throws AttributeNotFoundException
@@ -32,6 +33,7 @@ public class UserDynamicMXBean implements DynamicMBean {
 
     /**
      * 设置属性
+     *
      * @param attribute
      * @throws AttributeNotFoundException
      * @throws InvalidAttributeValueException

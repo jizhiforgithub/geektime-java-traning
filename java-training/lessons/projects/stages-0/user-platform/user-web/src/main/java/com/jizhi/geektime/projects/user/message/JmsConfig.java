@@ -2,6 +2,7 @@ package com.jizhi.geektime.projects.user.message;
 
 /**
  * jms 的jndi配置
+ *
  * @author jizhi7
  * @since 1.0
  **/

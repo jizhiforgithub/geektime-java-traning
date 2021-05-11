@@ -12,7 +12,7 @@ public class Son extends Parent {
 
 }
 
-class Test{
+class Test {
     public static void main(String[] args) {
         Parent p = new Parent();
 

@@ -18,6 +18,7 @@ public class Test {
         System.out.println(re);
     }
 }
+
 class A {
     private static int aa() {
         System.out.println("aa");

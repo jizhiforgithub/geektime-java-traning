@@ -4,14 +4,14 @@
     <title>index</title>
 </head>
 <body>
-    <div class="container-lg">
-       <p>hello word</p>
-        <div>
-            <a href="register-form.jsp">注册</a>
-        </div>
-        <div>
-            <a href="login-form.jsp">登录</a>
-        </div>
+<div class="container-lg">
+    <p>hello word</p>
+    <div>
+        <a href="register-form.jsp">注册</a>
     </div>
+    <div>
+        <a href="login-form.jsp">登录</a>
+    </div>
+</div>
 
 </body>

@@ -127,7 +127,7 @@ public abstract class AbstractDatabaseRepository {
     protected Connection getConnection() {
 //        return TransactionalCallBack.connectionThreadLocal.get();
         ClassicComponentContext componentContext = ClassicComponentContext.getInstance();
-        DBConnectionManager dbConnectionManager = (DBConnectionManager)componentContext.getComponent("bean/DBConnectionManager");
+        DBConnectionManager dbConnectionManager = (DBConnectionManager) componentContext.getComponent("bean/DBConnectionManager");
         return dbConnectionManager.getConnection();
     }
 

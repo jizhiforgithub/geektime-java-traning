@@ -8,13 +8,14 @@ import javax.naming.spi.ObjectFactory;
 import java.util.Hashtable;
 
 /**
- *  jndi jms连接工厂类
+ * jndi jms连接工厂类
+ *
  * @author jizhi7
  * @since 1.0
  **/
 public class MessageProducerJndiFactory implements ObjectFactory {
 
-   private JmsConfig jmsConfig;
+    private JmsConfig jmsConfig;
 
 
     @Override

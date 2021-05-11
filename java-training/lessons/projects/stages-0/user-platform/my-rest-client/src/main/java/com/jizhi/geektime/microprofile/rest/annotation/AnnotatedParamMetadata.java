@@ -5,6 +5,8 @@ import java.lang.annotation.Annotation;
 
 /**
  * javax.ws.rs的Param相关的注解的注解参数元数据
+ *
+ * @author jizhi7
  * @see javax.ws.rs.PathParam
  * @see javax.ws.rs.QueryParam
  * @see javax.ws.rs.MatrixParam
@@ -12,7 +14,6 @@ import java.lang.annotation.Annotation;
  * @see javax.ws.rs.CookieParam
  * @see javax.ws.rs.HeaderParam
  * @see javax.ws.rs.DefaultValue
- * @author jizhi7
  * @since 1.0
  **/
 public class AnnotatedParamMetadata {

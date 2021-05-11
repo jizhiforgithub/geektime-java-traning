@@ -10,6 +10,7 @@ import static java.lang.String.format;
 
 /**
  * 文件回调存储
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -35,6 +36,7 @@ public class FileFallbackStorage extends AbstractFallbackStorage<Object, Object>
 
     /**
      * 加载缓存对象
+     *
      * @param key 缓存key
      * @return
      * @throws CacheLoaderException
@@ -45,7 +47,7 @@ public class FileFallbackStorage extends AbstractFallbackStorage<Object, Object>
         File storageFile = toStorageFile(key);
 
         // 如果文件不存在 或 不能读取
-        if(!storageFile.exists() || !storageFile.canRead()) {
+        if (!storageFile.exists() || !storageFile.canRead()) {
             logger.warning(format("The storage file[path:%s] does not exist or can't be read, " +
                     "thus the value can't be loaded.", storageFile.getAbsolutePath()));
             return null;
@@ -53,8 +55,8 @@ public class FileFallbackStorage extends AbstractFallbackStorage<Object, Object>
 
         // 从文件中反序列化出对象
         Object value = null;
-        try(FileInputStream fileInputStream = new FileInputStream(storageFile);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);){
+        try (FileInputStream fileInputStream = new FileInputStream(storageFile);
+             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);) {
             value = objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -64,6 +66,7 @@ public class FileFallbackStorage extends AbstractFallbackStorage<Object, Object>
 
     /**
      * 将缓存的key转换为对应的一个文件
+     *
      * @param key
      * @return
      */
@@ -73,6 +76,7 @@ public class FileFallbackStorage extends AbstractFallbackStorage<Object, Object>
 
     /**
      * 写缓存数据
+     *
      * @param entry
      * @throws CacheWriterException
      */
@@ -92,8 +96,8 @@ public class FileFallbackStorage extends AbstractFallbackStorage<Object, Object>
         }
 
         // 将 value 序列化，写入文件中
-        try(FileOutputStream fileOutputStream = new FileOutputStream(storageFile);
-           ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(storageFile);
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(value);
         } catch (IOException e) {
             e.printStackTrace();
@@ -102,6 +106,7 @@ public class FileFallbackStorage extends AbstractFallbackStorage<Object, Object>
 
     /**
      * 删除缓存对象
+     *
      * @param key
      * @throws CacheWriterException
      */

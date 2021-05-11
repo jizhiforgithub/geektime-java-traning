@@ -9,6 +9,7 @@ import java.util.*;
 
 /**
  * 配置类转换器的集合
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -19,7 +20,7 @@ public class Converters implements Iterable<Converter> {
     /**
      * 转换器Map集合，
      * key：可以转换的类，val：转换器
-     *  转换器集合使用 PriorityQueue 堆
+     * 转换器集合使用 PriorityQueue 堆
      */
     private final Map<Class<?>, PriorityQueue<PrioritizedConverter>> typedConverters = new HashMap<>();
 
@@ -49,6 +50,7 @@ public class Converters implements Iterable<Converter> {
 
     /**
      * 添加转换器
+     *
      * @param converters 转换器迭代器
      */
     public void addConverters(Iterable<Converter> converters) {
@@ -57,6 +59,7 @@ public class Converters implements Iterable<Converter> {
 
     /**
      * 添加转换器， 设置优先级为默认优先级 100 {@link #DEFAULT_PRIORITY}
+     *
      * @param converter 转换器
      */
     public void addConverter(Converter converter) {
@@ -65,8 +68,9 @@ public class Converters implements Iterable<Converter> {
 
     /**
      * 添加转换器
+     *
      * @param converter 转换器
-     * @param priority 优先级
+     * @param priority  优先级
      */
     public void addConverter(Converter converter, int priority) {
         Class<?> convertedType = resolveConvertedType(converter);
@@ -75,8 +79,9 @@ public class Converters implements Iterable<Converter> {
 
     /**
      * 添加转换器
-     * @param converter 转换器
-     * @param priority 优先级
+     *
+     * @param converter     转换器
+     * @param priority      优先级
      * @param convertedType 转换的类型
      */
     public void addConverter(Converter converter, int priority, Class<?> convertedType) {
@@ -86,6 +91,7 @@ public class Converters implements Iterable<Converter> {
 
     /**
      * 解析转换器支持的转换类型，获取转换器的泛型
+     *
      * @param converter 转换器
      * @return 转换器能转换的类型
      */
@@ -121,6 +127,7 @@ public class Converters implements Iterable<Converter> {
     /**
      * 转换器是否是一个接口判断
      * 转换器是否是抽象类判断
+     *
      * @param converter
      */
     private void assertConverter(Converter<?> converter) {
@@ -136,6 +143,7 @@ public class Converters implements Iterable<Converter> {
 
     /**
      * 解析转换器支持的类型
+     *
      * @param converterClass 转换器的类
      * @return
      */
@@ -153,6 +161,7 @@ public class Converters implements Iterable<Converter> {
 
     /**
      * 解析转换器类型
+     *
      * @param type 转换器的接口类
      * @return
      */
@@ -177,6 +186,7 @@ public class Converters implements Iterable<Converter> {
 
     /**
      * 添加转换器
+     *
      * @param converters
      */
     public void addConverters(Converter... converters) {
@@ -185,6 +195,7 @@ public class Converters implements Iterable<Converter> {
 
     /**
      * 根据类型，获取所有支持的转换器
+     *
      * @param convertedType
      * @return
      */
@@ -203,6 +214,7 @@ public class Converters implements Iterable<Converter> {
 
     /**
      * 转换器迭代
+     *
      * @return 迭代器
      */
     @Override

@@ -8,7 +8,7 @@ import javax.cache.event.*;
  * 2021/4/14
  * jizhi7
  **/
-public class TestCacheEntryListener <K, V> implements CacheEntryCreatedListener<K, V>, CacheEntryUpdatedListener<K, V>,
+public class TestCacheEntryListener<K, V> implements CacheEntryCreatedListener<K, V>, CacheEntryUpdatedListener<K, V>,
         CacheEntryExpiredListener<K, V>, CacheEntryRemovedListener<K, V>, CacheEntryListenerConfiguration<K, V> {
 
     private CacheEntryEvent<K, V> cacheEntryEvent;
@@ -58,6 +58,7 @@ public class TestCacheEntryListener <K, V> implements CacheEntryCreatedListener<
     private void handleEvents(String source, Iterable<CacheEntryEvent<? extends K, ? extends V>> cacheEntryEvents) {
         cacheEntryEvents.forEach(event -> handleEvent(source, event));
     }
+
     private void handleEvent(String source, CacheEntryEvent<? extends K, ? extends V> event) {
         this.cacheEntryEvent = (CacheEntryEvent<K, V>) event;
         System.out.printf("[Thread : %s] %s - %s\n", Thread.currentThread().getName(), source, event);

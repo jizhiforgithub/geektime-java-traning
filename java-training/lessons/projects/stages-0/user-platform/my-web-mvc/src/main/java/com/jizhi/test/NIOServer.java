@@ -30,13 +30,13 @@ public class NIOServer {
                 while (iterator.hasNext()) {
                     SelectionKey selectionKey = iterator.next();
                     iterator.remove();
-                    if(selectionKey.isAcceptable()) {
+                    if (selectionKey.isAcceptable()) {
                         ServerSocketChannel serverChannel = (ServerSocketChannel) selectionKey.channel();
                         SocketChannel socketChannel = serverChannel.accept();
                         socketChannel.configureBlocking(false);
-                        socketChannel.register(selector, SelectionKey.OP_READ,byteBuffer);
+                        socketChannel.register(selector, SelectionKey.OP_READ, byteBuffer);
                     }
-                    if(selectionKey.isReadable()) {
+                    if (selectionKey.isReadable()) {
                         byteBuffer.clear();
                         SocketChannel channel = (SocketChannel) selectionKey.channel();
                         channel.read(byteBuffer);
@@ -46,12 +46,12 @@ public class NIOServer {
                         byteBuffer.get(datas);
                         System.out.println("read：" + new String(datas));
                         byteBuffer.clear();
-                        channel.register(selector, SelectionKey.OP_WRITE,byteBuffer);
+                        channel.register(selector, SelectionKey.OP_WRITE, byteBuffer);
                     }
-                    if(selectionKey.isWritable()) {
+                    if (selectionKey.isWritable()) {
                         SocketChannel channel = (SocketChannel) selectionKey.channel();
                         byteBuffer.put("hello word".getBytes());
-                        if(channel.write(byteBuffer) != -1) {
+                        if (channel.write(byteBuffer) != -1) {
                             System.out.println("write finnish!");
                         }
                         byteBuffer.clear();

@@ -4,6 +4,7 @@ import java.io.*;
 
 /**
  * 基于字节数组的序列化和反序列化
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -26,8 +27,8 @@ public class DefaultByteArraySerialize implements DataSerialize {
     public Object deserialize(Object value, Class clazz) {
         Object obj = null;
         byte[] bytes = (byte[]) value;
-        try(ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
-        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);) {
+        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
+             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);) {
             obj = objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);

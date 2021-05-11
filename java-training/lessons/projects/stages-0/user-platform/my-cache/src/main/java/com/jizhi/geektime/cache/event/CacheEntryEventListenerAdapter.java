@@ -72,11 +72,12 @@ public class CacheEntryEventListenerAdapter<K, V> implements ConditionalCacheEnt
     /**
      * 获取执行器，
      * 如果事件监听配置配置了同步，就直接返回同步执行
-     *  否则就返回 ForkJoinPool 的线程池异步执行
+     * 否则就返回 ForkJoinPool 的线程池异步执行
+     *
      * @param configuration
      * @return
      */
-    private Executor getExecutor(CacheEntryListenerConfiguration<K,V> configuration) {
+    private Executor getExecutor(CacheEntryListenerConfiguration<K, V> configuration) {
         Executor executor = null;
         // 同步执行
         if (configuration.isSynchronous()) {
@@ -89,10 +90,11 @@ public class CacheEntryEventListenerAdapter<K, V> implements ConditionalCacheEnt
 
     /**
      * 初始化事件类型和事件处理方法的映射表
+     *
      * @param cacheEntryListener 事件监听器
      * @return
      */
-    private Map<EventType,Method> determineEventTypeMethods(CacheEntryListener<? super K,? super V> cacheEntryListener) {
+    private Map<EventType, Method> determineEventTypeMethods(CacheEntryListener<? super K, ? super V> cacheEntryListener) {
         Map<EventType, Method> eventTypeMethods = new HashMap<>(EventType.values().length);
         // 监听器类
         Class<?> cacheEntryListenerClass = cacheEntryListener.getClass();
@@ -117,6 +119,7 @@ public class CacheEntryEventListenerAdapter<K, V> implements ConditionalCacheEnt
 
     /**
      * 获取缓存实体事件过滤器
+     *
      * @param configuration 缓存实体监听配置
      * @return
      */
@@ -136,6 +139,7 @@ public class CacheEntryEventListenerAdapter<K, V> implements ConditionalCacheEnt
 
     /**
      * 是否支持该事件，通过获取支持事件类型表和过滤器来判断
+     *
      * @param event
      * @return
      * @throws CacheEntryListenerException
@@ -147,6 +151,7 @@ public class CacheEntryEventListenerAdapter<K, V> implements ConditionalCacheEnt
 
     /**
      * 查询事件支持表，判断该事件是否支持
+     *
      * @param event
      * @return
      */
@@ -156,6 +161,7 @@ public class CacheEntryEventListenerAdapter<K, V> implements ConditionalCacheEnt
 
     /**
      * 有事件发生的时候
+     *
      * @param event
      */
     @Override

@@ -22,6 +22,7 @@ public class BusinessSubscriber<T> implements Subscriber<T> {
 
     /**
      * 订阅者订阅
+     *
      * @param s
      */
     @Override
@@ -32,6 +33,7 @@ public class BusinessSubscriber<T> implements Subscriber<T> {
 
     /**
      * 有数据到达
+     *
      * @param o
      */
     @Override

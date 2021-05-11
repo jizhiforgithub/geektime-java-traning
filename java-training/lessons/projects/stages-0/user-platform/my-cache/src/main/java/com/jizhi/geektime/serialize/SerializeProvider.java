@@ -1,7 +1,6 @@
 package com.jizhi.geektime.serialize;
 
 /**
- *
  * @author jizhi7
  * @since 1.0
  **/

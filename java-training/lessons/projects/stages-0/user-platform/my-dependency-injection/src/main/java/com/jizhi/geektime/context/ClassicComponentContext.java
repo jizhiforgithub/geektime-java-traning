@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 
 /**
  * 传统组件上下文，基于JNDI实现
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -64,6 +65,7 @@ public class ClassicComponentContext implements ComponentContext {
 
     /**
      * 组件初始化
+     *
      * @param servletContext
      * @throws RuntimeException
      */
@@ -108,9 +110,9 @@ public class ClassicComponentContext implements ComponentContext {
     /**
      * 初始化组件（支持 Java 标准 Commons Annotation 生命周期）
      * <ol>
-     *  <li>注入阶段 - {@link Resource}</li>
-     *  <li>初始阶段 - {@link PostConstruct}</li>
-     *  <li>销毁阶段 - {@link PreDestroy}</li>
+     * <li>注入阶段 - {@link Resource}</li>
+     * <li>初始阶段 - {@link PostConstruct}</li>
+     * <li>销毁阶段 - {@link PreDestroy}</li>
      * </ol>
      */
     protected void initializeComponents() {
@@ -120,9 +122,9 @@ public class ClassicComponentContext implements ComponentContext {
     /**
      * 初始化组件（支持 Java 标准 Commons Annotation 生命周期）
      * <ol>
-     *  <li>注入阶段 - {@link Resource}</li>
-     *  <li>初始阶段 - {@link PostConstruct}</li>
-     *  <li>销毁阶段 - {@link PreDestroy}</li>
+     * <li>注入阶段 - {@link Resource}</li>
+     * <li>初始阶段 - {@link PostConstruct}</li>
+     * <li>销毁阶段 - {@link PreDestroy}</li>
      * </ol>
      */
     public void initializeComponent(Object component) {
@@ -167,6 +169,7 @@ public class ClassicComponentContext implements ComponentContext {
 
     /**
      * 依赖注入组件
+     *
      * @param component
      * @param componentClass
      */
@@ -191,6 +194,7 @@ public class ClassicComponentContext implements ComponentContext {
 
     /**
      * 执行后置处理器
+     *
      * @param component
      * @param candidateMethods
      */
@@ -248,7 +252,6 @@ public class ClassicComponentContext implements ComponentContext {
     public <C> C lookupComponent(String name) {
         return executeInContext(context -> (C) context.lookup(name));
     }
-
 
 
     @Override

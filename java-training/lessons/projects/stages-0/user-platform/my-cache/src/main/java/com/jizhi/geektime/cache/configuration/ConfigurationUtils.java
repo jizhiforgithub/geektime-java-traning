@@ -11,19 +11,20 @@ public abstract class ConfigurationUtils {
 
     /**
      * 将 {@link Configuration} 配置转换为 一个多配置的配置
+     *
      * @param configuration
      * @param <V>
      * @param <K>
      * @return
      */
-    public static <K, V> MutableConfiguration<K,V> mutableConfiguration(Configuration<K,V> configuration) {
+    public static <K, V> MutableConfiguration<K, V> mutableConfiguration(Configuration<K, V> configuration) {
         MutableConfiguration mutableConfiguration = null;
         // 可变的配置
-        if(configuration instanceof MutableConfiguration) {
+        if (configuration instanceof MutableConfiguration) {
             mutableConfiguration = (MutableConfiguration) configuration;
         }
         // 只读的配置
-        else if(configuration instanceof CompleteConfiguration) {
+        else if (configuration instanceof CompleteConfiguration) {
             CompleteConfiguration config = (CompleteConfiguration) configuration;
             mutableConfiguration = new MutableConfiguration<>(config);
         } else {
@@ -36,17 +37,19 @@ public abstract class ConfigurationUtils {
 
     /**
      * 获取不变的配置
+     *
      * @param configuration
      * @param <K>
      * @param <V>
      * @return
      */
-    public static <K, V> CompleteConfiguration<K, V> immutableConfiguration(MutableConfiguration<K,V> configuration) {
+    public static <K, V> CompleteConfiguration<K, V> immutableConfiguration(MutableConfiguration<K, V> configuration) {
         return new ImmutableCompleteConfiguration(configuration);
     }
 
     /**
      * 缓存实体监听配置
+     *
      * @param listener
      * @param <K>
      * @param <V>
@@ -58,6 +61,7 @@ public abstract class ConfigurationUtils {
 
     /**
      * 缓存实体监听和过滤配置
+     *
      * @param listener
      * @param filter
      * @param <K>
@@ -71,6 +75,7 @@ public abstract class ConfigurationUtils {
 
     /**
      * 缓存实体监听和过滤配置，是否旧数据，同步的
+     *
      * @param listener
      * @param filter
      * @param isOldValueRequired
@@ -86,6 +91,7 @@ public abstract class ConfigurationUtils {
 
     /**
      * 缓存实体监听和过滤配置，是否旧数据，是否同步
+     *
      * @param listener
      * @param filter
      * @param isOldValueRequired

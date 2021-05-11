@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * K V 键值对
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -44,6 +45,7 @@ class KeyValueTypePair {
 
     /**
      * 解析类的信息，创建 KV 对
+     *
      * @param targetClass
      * @return
      */
@@ -79,6 +81,7 @@ class KeyValueTypePair {
 
     /**
      * 判定缓存实现类，不是接口和抽象类
+     *
      * @param cacheClass 缓存实现类
      */
     private static void assertCache(Class<?> cacheClass) {
@@ -92,6 +95,7 @@ class KeyValueTypePair {
 
     /**
      * 从类的实现接口中解析，获得KV
+     *
      * @param type
      * @return
      */
@@ -110,12 +114,13 @@ class KeyValueTypePair {
 
     /**
      * 从Type类型中解析KV键值对
-     *  Type是所有类型的父接口,
-     *  如原始类型(raw types 对应 Class)、
-     *  参数化类型(parameterized types 对应 ParameterizedType)、
-     *  数组类型(array types 对应 GenericArrayType)、
-     *  类型变量(type variables 对应 TypeVariable )和
-     *  基本(原生)类型(primitive types 对应 Class),。
+     * Type是所有类型的父接口,
+     * 如原始类型(raw types 对应 Class)、
+     * 参数化类型(parameterized types 对应 ParameterizedType)、
+     * 数组类型(array types 对应 GenericArrayType)、
+     * 类型变量(type variables 对应 TypeVariable )和
+     * 基本(原生)类型(primitive types 对应 Class),。
+     *
      * @param type
      * @return
      */
@@ -149,6 +154,7 @@ class KeyValueTypePair {
 
     /**
      * 参数类型，转为类对象
+     *
      * @param typeArgument
      * @return
      */

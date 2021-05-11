@@ -7,10 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *  数据发布者
- *
- *
- *  Publisher -> [data] 调用Subscriber的onNext
+ * 数据发布者
+ * <p>
+ * <p>
+ * Publisher -> [data] 调用Subscriber的onNext
  *
  * @param <T>
  */
@@ -23,6 +23,7 @@ public class SimplePublisher<T> implements Publisher<T> {
 
     /**
      * 订阅者订阅这个发布
+     *
      * @param s
      */
     @Override

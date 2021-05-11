@@ -30,6 +30,7 @@ public class HttpSessionWrapper implements HttpSession {
 
     /**
      * 设置seesion属性，放缓存
+     *
      * @param name
      * @param value
      */
@@ -48,6 +49,7 @@ public class HttpSessionWrapper implements HttpSession {
 
     /**
      * 拿session 属性，没有的话就拿缓存
+     *
      * @param name
      * @return
      */

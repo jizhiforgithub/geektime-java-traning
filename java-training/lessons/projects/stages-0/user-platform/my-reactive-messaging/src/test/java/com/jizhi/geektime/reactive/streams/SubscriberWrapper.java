@@ -5,6 +5,7 @@ import org.reactivestreams.Subscription;
 
 /**
  * 组合模式 + 装饰器模式
+ *
  * @param <T>
  */
 public class SubscriberWrapper<T> implements Subscriber<T> {

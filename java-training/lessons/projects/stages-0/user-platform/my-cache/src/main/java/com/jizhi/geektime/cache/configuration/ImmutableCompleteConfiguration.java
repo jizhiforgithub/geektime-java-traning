@@ -11,6 +11,7 @@ import java.util.Objects;
 
 /**
  * 不可变的配置，使用了装饰器模式包装
+ *
  * @author jizhi7
  * @since 1.0
  **/

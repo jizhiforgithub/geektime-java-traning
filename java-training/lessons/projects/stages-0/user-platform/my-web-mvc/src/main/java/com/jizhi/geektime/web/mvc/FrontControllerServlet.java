@@ -93,17 +93,19 @@ public class FrontControllerServlet extends HttpServlet {
 
                 // 遍历这些controller的所有public的方法，初始化方法、url映射
                 Path controllerPath = controllerClass.getAnnotation(Path.class);
-                String requestPath = controllerPath.value();
+
                 Method[] publicMethods = controllerClass.getMethods();
                 for (Method method : publicMethods) {
                     Set<String> supportHttpMethods = findSupportHttpMethods(method);
                     Path methodPath = method.getAnnotation(Path.class);
                     if (methodPath != null) {
+                        String requestPath = controllerPath.value();
                         requestPath += methodPath.value();
                         handleMethodInfoMapping.put(requestPath, new HandlerMethodInfo(requestPath, method, supportHttpMethods));
+                        controllersMapping.put(requestPath, controller);
                     }
                 }
-                controllersMapping.put(requestPath, controller);
+
             }
         } catch (Throwable throwable) {
             throw new RuntimeException(throwable);
@@ -357,13 +359,12 @@ public class FrontControllerServlet extends HttpServlet {
     }
 
 
-
     //@Override
     //public Object getObject(String name) {
-   //     return componentContext.getComponent(name);
+    //     return componentContext.getComponent(name);
     //}
 
-  //  private Container parentContainer;
+    //  private Container parentContainer;
 
 //    @Override
 //    public Container getParentContainer() {

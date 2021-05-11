@@ -47,20 +47,20 @@ public class HttpPostInvocation implements Invocation {
         } else {
             this.headers = headers;
         }
-        if(getMediaTypeString(entity) != null) {
+        if (getMediaTypeString(entity) != null) {
             this.headers.add("content-type", getMediaTypeString(entity));
         }
 
     }
 
     private String getMediaTypeString(Entity<?> entity) {
-        if(entity.getMediaType() == null) {
+        if (entity.getMediaType() == null) {
             return null;
         }
-        if(entity.getMediaType().getSubtype() == null) {
+        if (entity.getMediaType().getSubtype() == null) {
             return entity.getMediaType().getType();
         }
-        return entity.getMediaType().getType() +"/" + entity.getMediaType().getSubtype();
+        return entity.getMediaType().getType() + "/" + entity.getMediaType().getSubtype();
     }
 
 

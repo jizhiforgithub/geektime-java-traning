@@ -59,8 +59,8 @@ public class TestA {
 
         URL serverUrl = new URL("https://updates.jenkins.io");
         HttpURLConnection conn = (HttpURLConnection) serverUrl.openConnection();
-       // conn.setRequestMethod("GET");
-      //  conn.setRequestProperty("Content-type", "application/json");
+        // conn.setRequestMethod("GET");
+        //  conn.setRequestProperty("Content-type", "application/json");
         //必须设置false，否则会自动redirect到重定向后的地址
         conn.setInstanceFollowRedirects(false);
         conn.connect();

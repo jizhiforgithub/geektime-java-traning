@@ -39,6 +39,7 @@ public class ExpirableEntry<K, V> implements Cache.Entry<K, V>, Serializable {
 
     /**
      * key不为空
+     *
      * @param key
      * @param <K>
      */
@@ -58,6 +59,7 @@ public class ExpirableEntry<K, V> implements Cache.Entry<K, V>, Serializable {
 
     /**
      * 设置valu值
+     *
      * @param value
      */
     public void setValue(V value) {
@@ -65,7 +67,7 @@ public class ExpirableEntry<K, V> implements Cache.Entry<K, V>, Serializable {
         this.value = value;
     }
 
-    public static  <V> void requireValueNotNull(V value) {
+    public static <V> void requireValueNotNull(V value) {
         requireNonNull(value, "The value must not be null.");
     }
 
@@ -79,6 +81,7 @@ public class ExpirableEntry<K, V> implements Cache.Entry<K, V>, Serializable {
 
     /**
      * 判定时候已经过期
+     *
      * @return
      */
     public boolean isExpired() {

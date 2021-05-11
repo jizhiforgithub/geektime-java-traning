@@ -1,82 +1,82 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Context>
 
-	<Resource name="jdbc/UserPlatformDB" type="javax.sql.DataSource"
-			  auth="Container" description="Derby database for User Platform"
-			  maxActive="10000" maxIdle="3000" maxWait="10000"
-			  username="" password=""
-			  driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
-			  url="jdbc:derby:UserPlatformDB;create=true"/>
+    <Resource name="jdbc/UserPlatformDB" type="javax.sql.DataSource"
+              auth="Container" description="Derby database for User Platform"
+              maxActive="10000" maxIdle="3000" maxWait="10000"
+              username="" password=""
+              driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
+              url="jdbc:derby:UserPlatformDB;create=true"/>
 
-	<Resource name="bean/UserService" auth="Container"
-			  type="com.jizhi.geektime.projects.user.service.impl.UserServiceImpl"
-			  factory="org.apache.naming.factory.BeanFactory" />
+    <Resource name="bean/UserService" auth="Container"
+              type="com.jizhi.geektime.projects.user.service.impl.UserServiceImpl"
+              factory="org.apache.naming.factory.BeanFactory"/>
 
-	<Resource name="bean/DatabaseUserRepository" auth="Container"
-			  type="com.jizhi.geektime.projects.user.repository.DatabaseUserRepository"
-			  factory="org.apache.naming.factory.BeanFactory" />
+    <Resource name="bean/DatabaseUserRepository" auth="Container"
+              type="com.jizhi.geektime.projects.user.repository.DatabaseUserRepository"
+              factory="org.apache.naming.factory.BeanFactory"/>
 
-	<Resource name="bean/DBConnectionManager" auth="Container"
-			  type="com.jizhi.geektime.projects.user.sql.DBConnectionManager"
-			  factory="org.apache.naming.factory.BeanFactory" />
+    <Resource name="bean/DBConnectionManager" auth="Container"
+              type="com.jizhi.geektime.projects.user.sql.DBConnectionManager"
+              factory="org.apache.naming.factory.BeanFactory"/>
 
-	<!--
+    <!--
     缺少指定 interface 类型的属性
     目标注入的类型：javax.persistence.EntityManager
     -->
-	<Resource name="bean/EntityManager" auth="Container"
-			  type="com.jizhi.geektime.projects.user.orm.jpa.DelegatingEntityManager"
-			  persistenceUnitName="emf"
-			  propertiesLocation="META-INF/jpa-datasource.properties"
-			  factory="org.apache.naming.factory.BeanFactory"/>
+    <Resource name="bean/EntityManager" auth="Container"
+              type="com.jizhi.geektime.projects.user.orm.jpa.DelegatingEntityManager"
+              persistenceUnitName="emf"
+              propertiesLocation="META-INF/jpa-datasource.properties"
+              factory="org.apache.naming.factory.BeanFactory"/>
 
-	<Resource name="bean/UserService2" auth="Container"
-			  type="com.jizhi.geektime.projects.user.service.impl.UserService2"
-			  factory="org.apache.naming.factory.BeanFactory" />
+    <Resource name="bean/UserService2" auth="Container"
+              type="com.jizhi.geektime.projects.user.service.impl.UserService2"
+              factory="org.apache.naming.factory.BeanFactory"/>
 
-	<Resource name="bean/ValidatorDelegate" auth="Container"
-			  type="com.jizhi.geektime.web.validator.ValidatorDelegate"
-			  factory="org.apache.naming.factory.BeanFactory" />
+    <!--<Resource name="bean/ValidatorDelegate" auth="Container"
+              type="com.jizhi.geektime.web.validator.ValidatorDelegate"
+              factory="org.apache.naming.factory.BeanFactory" />
+-->
+    <!--<Resource name="bean/JavaEEConfigProviderResolver" auth="Container"
+              type="com.jizhi.geektime.configuration.microprofile.JavaEEConfigProviderResolver"
+              factory="org.apache.naming.factory.BeanFactory" />-->
 
-	<!--<Resource name="bean/JavaEEConfigProviderResolver" auth="Container"
-			  type="com.jizhi.geektime.configuration.microprofile.JavaEEConfigProviderResolver"
-			  factory="org.apache.naming.factory.BeanFactory" />-->
+    <Resource name="jms/activemq-factory" auth="Container"
+              type="org.apache.activemq.ActiveMQConnectionFactory"
+              description="JMS Connection Factory"
+              factory="org.apache.activemq.jndi.JNDIReferenceFactory"
+              brokerURL="vm://localhost"
+              brokerName="LocalActiveMQBroker"
+              useEmbeddedBroker="false"/>
 
-	<Resource name="jms/activemq-factory" auth="Container"
-			  type="org.apache.activemq.ActiveMQConnectionFactory"
-			  description="JMS Connection Factory"
-			  factory="org.apache.activemq.jndi.JNDIReferenceFactory"
-			  brokerURL="vm://localhost"
-			  brokerName="LocalActiveMQBroker"
-			  useEmbeddedBroker="false"	/>
+    <Resource name="jms/activemq-topic" auth="Container"
+              type="org.apache.activemq.command.ActiveMQTopic"
+              factory="org.apache.activemq.jndi.JNDIReferenceFactory"
+              physicalName="activemq-topic"/>
 
-	<Resource name="jms/activemq-topic" auth="Container"
-			  type="org.apache.activemq.command.ActiveMQTopic"
-			  factory="org.apache.activemq.jndi.JNDIReferenceFactory"
-			  physicalName="activemq-topic" />
+    <Resource name="jms/producer" auth="Container"
+              type="javax.jms.MessageProducer"
+              factory="com.jizhi.geektime.projects.user.message.MessageProducerJndiFactory"/>
 
-	<Resource name="jms/producer" auth="Container"
-			  type="javax.jms.MessageProducer"
-			  factory="com.jizhi.geektime.projects.user.message.MessageProducerJndiFactory"/>
+    <Resource name="jms/config" auth="Container"
+              type="com.jizhi.geektime.projects.user.message.JmsConfig"
+              connectionFactoryJndiName="activemq-factory"
+              queueName="activemq-topic1"
+              factory="org.apache.naming.factory.BeanFactory"/>
 
-	<Resource name="jms/config" auth="Container"
-			  type="com.jizhi.geektime.projects.user.message.JmsConfig"
-			  connectionFactoryJndiName="activemq-factory"
-			  queueName="activemq-topic1"
-			  factory="org.apache.naming.factory.BeanFactory" />
+    <Resource name="jms/consumer" auth="Container"
+              type="javax.jms.MessageConsumer"
+              factory="com.jizhi.geektime.projects.user.message.MessageConsumerJndiFactory"/>
 
-	<Resource name="jms/consumer" auth="Container"
-			  type="javax.jms.MessageConsumer"
-			  factory="com.jizhi.geektime.projects.user.message.MessageConsumerJndiFactory" />
+    <Resource name="bean/jmsService" auth="Container"
+              type="com.jizhi.geektime.projects.user.service.JmsService"
+              factory="org.apache.naming.factory.BeanFactory"/>
 
-	<Resource name="bean/jmsService" auth="Container"
-			  type="com.jizhi.geektime.projects.user.service.JmsService"
-			  factory="org.apache.naming.factory.BeanFactory" />
+    <Environment name="maxVal" value="10" type="java.lang.Integer" override="false"/>
 
-	<Environment name="maxVal" value="10" type="java.lang.Integer" override="false"/>
-
-	<Realm className="org.apache.catalina.realm.LockOutRealm">
-		<Realm className="org.apache.catalina.realm.MemoryRealm"
-			   pathname="conf/tomcat-users.xml"/>
-	</Realm>
+    <Realm className="org.apache.catalina.realm.LockOutRealm">
+        <Realm className="org.apache.catalina.realm.MemoryRealm"
+               pathname="conf/tomcat-users.xml"/>
+    </Realm>
 </Context>

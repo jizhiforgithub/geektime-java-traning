@@ -6,6 +6,7 @@ import java.io.*;
 
 /**
  * 基于jackson实现的的序列化和反序列化
+ *
  * @author jizhi7
  * @since 1.0
  **/

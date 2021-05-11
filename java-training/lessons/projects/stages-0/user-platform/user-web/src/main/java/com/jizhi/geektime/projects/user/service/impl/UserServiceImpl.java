@@ -9,12 +9,13 @@ import com.jizhi.geektime.projects.user.transaction.annotation.LocalPropagation;
 import com.jizhi.geektime.projects.user.transaction.annotation.LocalTransactional;
 
 import javax.annotation.Resource;
-import javax.persistence.EntityManager;
+//import javax.persistence.EntityManager;
 import javax.validation.Validator;
 import java.util.Collection;
 
 /**
  * 用户服务
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -27,8 +28,8 @@ public class UserServiceImpl implements IUserService {
     private UserService2 userService2;*/
 
     // Java CDI
-    @Resource(name = "bean/EntityManager")
-    private EntityManager entityManager;
+    //  @Resource(name = "bean/EntityManager")
+    // private EntityManager entityManager;
 
     //@Resource(name = "bean/Validator")
     //private Validator validator;
@@ -42,7 +43,7 @@ public class UserServiceImpl implements IUserService {
 //        transaction.begin();
 
         // 主调用
-        entityManager.persist(user);
+        //  entityManager.persist(user);
 
         // 调用其他方法方法
         update(user); // 涉及事务

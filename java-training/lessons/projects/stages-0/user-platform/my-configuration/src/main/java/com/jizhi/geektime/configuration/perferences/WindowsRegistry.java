@@ -139,6 +139,7 @@ public final class WindowsRegistry {
 
     /**
      * method.invoke 被调用的方法是静态的话，就可以不传obj，只传参数
+     *
      * @param method
      * @param args
      * @param <T>

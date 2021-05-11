@@ -12,6 +12,7 @@ import static java.util.Collections.unmodifiableSet;
 
 /**
  * 请求模板
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -29,6 +30,7 @@ public class RequestTemplate {
 
     /**
      * 请求模板解析支持的注解类型
+     *
      * @see PathParam
      * @see QueryParam
      * @see MatrixParam
@@ -48,7 +50,8 @@ public class RequestTemplate {
 
     /**
      * 注解和注解元信息的映射关系
-     *  注解有
+     * 注解有
+     *
      * @see PathParam
      * @see javax.ws.rs.QueryParam
      * @see javax.ws.rs.MatrixParam

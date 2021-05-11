@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 /**
  * 配置源优先级比较器
+ *
  * @author jizhi7
  * @since 1.0
  **/

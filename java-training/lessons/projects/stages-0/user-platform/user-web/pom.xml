@@ -26,11 +26,11 @@
             <version>${revision}</version>
         </dependency>
 
-      <!--  <dependency>
+        <dependency>
             <groupId>com.jizhi.geektime</groupId>
             <artifactId>my-configuration</artifactId>
             <version>${revision}</version>
-        </dependency>-->
+        </dependency>
 
         <dependency>
             <groupId>com.jizhi.geektime</groupId>
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-           <!-- <scope>provided</scope>-->
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -83,16 +83,21 @@
         </dependency>
 
         <!-- Hibernate ORM Core -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-        </dependency>
+        <!-- <dependency>
+             <groupId>org.hibernate</groupId>
+             <artifactId>hibernate-core</artifactId>
+         </dependency>-->
+        <!-- <dependency>
+             <groupId>javax.persistence</groupId>
+             <artifactId>javax.persistence-api</artifactId>
+             <version>2.2</version>
+         </dependency>-->
 
         <!-- Hibernate ORM JPA -->
-       <!-- <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-        </dependency>-->
+        <!--  <dependency>
+              <groupId>org.hibernate</groupId>
+              <artifactId>hibernate-entitymanager</artifactId>
+          </dependency>-->
 
         <!-- Hibernate Validator -->
         <dependency>
@@ -101,10 +106,10 @@
         </dependency>
 
         <!-- micro profile -->
-       <!-- <dependency>
+        <dependency>
             <groupId>org.eclipse.microprofile.config</groupId>
             <artifactId>microprofile-config-api</artifactId>
-        </dependency>-->
+        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -117,11 +122,11 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.el</artifactId>
-           <!-- <scope>provided</scope>-->
-        </dependency>
+        <!-- <dependency>
+             <groupId>org.glassfish</groupId>
+             <artifactId>javax.el</artifactId>
+             <scope>provided</scope>
+         </dependency>-->
 
         <dependency>
             <groupId>org.jolokia</groupId>
@@ -133,24 +138,24 @@
             <artifactId>activemq-all</artifactId>
         </dependency>
 
-       <!-- <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-catalina</artifactId>
-            &lt;!&ndash; 运行时需要 &ndash;&gt;
-            <scope>runtime</scope>
-        </dependency>-->
-        <dependency>
+        <!-- <dependency>
+             <groupId>org.apache.tomcat</groupId>
+             <artifactId>tomcat-catalina</artifactId>
+             &lt;!&ndash; 运行时需要 &ndash;&gt;
+             <scope>runtime</scope>
+         </dependency>-->
+        <!--<dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
-            <!-- 运行时需要 -->
+            &lt;!&ndash; 运行时需要 &ndash;&gt;
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
-            <!-- 运行时需要 -->
+            &lt;!&ndash; 运行时需要 &ndash;&gt;
             <scope>runtime</scope>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
@@ -162,7 +167,7 @@
         </resources>
         <plugins>
             <!-- Tomcat Maven 插件用于构建可执行 war -->
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
@@ -170,12 +175,12 @@
                     <execution>
                         <id>tomcat-run</id>
                         <goals>
-                            &lt;!&ndash;最终打包成可执行的jar包&ndash;&gt;
+                            <!--最终打包成可执行的jar包-->
                             <goal>exec-war-only</goal>
                         </goals>
                         <phase>package</phase>
                         <configuration>
-                            &lt;!&ndash;ServletContext 路径&ndash;&gt;
+                            <!--ServletContext 路径-->
                             <path>/</path>
                             <enableNaming>true</enableNaming>
                             <tomcatConfigurationFilesDirectory>
@@ -184,29 +189,29 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
 
-                        <!-- Tomcat 8 Maven 插件用于构建可执行 war -->
-                        <!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat8-maven-plugin -->
-            <plugin>
+            <!-- Tomcat 8 Maven 插件用于构建可执行 war -->
+            <!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat8-maven-plugin -->
+            <!--<plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat8-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>tomcat-run</id>
                         <goals>
-                            <!-- 最终打包成可执行的jar包 -->
+                            &lt;!&ndash; 最终打包成可执行的jar包 &ndash;&gt;
                             <goal>exec-war-only</goal>
                         </goals>
                         <phase>package</phase>
                         <configuration>
-                            <!-- ServletContext 路径 -->
+                            &lt;!&ndash; ServletContext 路径 &ndash;&gt;
                             <path>/</path>
                             <enableNaming>true</enableNaming>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
     <pluginRepositories>

@@ -5,6 +5,7 @@ import org.eclipse.microprofile.config.spi.ConfigSource;
 
 /**
  * 默认的 ConfigValue 实现类
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -28,8 +29,7 @@ public class DefaultConfigValue implements ConfigValue {
     /**
      * 配置项所在的配置源
      */
-   private final ConfigSource configSource;
-
+    private final ConfigSource configSource;
 
 
     public DefaultConfigValue(String name, String value, String rawValue, ConfigSource configSource) {

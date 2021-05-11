@@ -20,6 +20,7 @@ import static java.lang.reflect.Proxy.newProxyInstance;
 
 /**
  * Rest调用端构建器
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -156,6 +157,7 @@ public class DefaultRestClientBuilder implements RestClientBuilder {
 
     /**
      * 构建rest客户端，解析接口注解，创建代理实例
+     *
      * @param clazz 请求的接口类，
      * @param <T>
      * @return
@@ -179,17 +181,18 @@ public class DefaultRestClientBuilder implements RestClientBuilder {
 
     /**
      * 解析接口上的 java.ws.rs 的*Param 注解
+     *
      * @param clazz
      * @param <T>
      * @return
      */
-    private <T> Map<Method,RequestTemplate> resolveRequestTemplates(Class<T> clazz) {
+    private <T> Map<Method, RequestTemplate> resolveRequestTemplates(Class<T> clazz) {
         Map<Method, RequestTemplate> requestTemplates = new LinkedHashMap<>();
         // public 的方法
         for (Method method : clazz.getMethods()) {
             // 解析方法
             RequestTemplate requestTemplate = requestTemplateResolver.resolve(clazz, method);
-            if(requestTemplate != null) {
+            if (requestTemplate != null) {
                 requestTemplate.urlTemplate(baseUrl.toString() + requestTemplate.getUriTemplate());
                 requestTemplates.put(method, requestTemplate);
             }

@@ -7,5 +7,4 @@ package com.jizhi.mybatis;
 public interface SqlSessionFactory {
 
 
-
 }

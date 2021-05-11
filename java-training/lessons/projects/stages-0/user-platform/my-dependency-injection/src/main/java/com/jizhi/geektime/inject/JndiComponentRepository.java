@@ -37,6 +37,7 @@ public class JndiComponentRepository extends AbstractComponentRepository {
 
     /**
      * 初始化EnvContext
+     *
      * @throws RuntimeException
      */
     private void initEnvContext() throws RuntimeException {

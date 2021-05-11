@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 /**
  * 反序列化
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -18,12 +19,14 @@ public interface DataSerialize {
 
     /**
      * 优先级
+     *
      * @return
      */
     int getPriority();
 
     /**
      * 序列化
+     *
      * @param obj
      * @return
      */
@@ -31,6 +34,7 @@ public interface DataSerialize {
 
     /**
      * 反序列化
+     *
      * @param value
      * @param clazz 反序列化的类型
      * @return

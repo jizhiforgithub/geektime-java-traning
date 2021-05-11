@@ -113,7 +113,7 @@ public abstract class AQS {
     // 入队，加在队列的尾部
     private Node enq(final Node node) {
         // 循环进行CAS操作
-        for (;;) {
+        for (; ; ) {
             Node t = tail;
             // 队列的尾节点为空，需要进行队列的初始化
             if (t == null) {

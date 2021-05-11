@@ -2,6 +2,7 @@ package com.jizhi.geektime.projects.user.transaction.annotation;
 
 /**
  * 事务隔离级别枚举
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -33,7 +34,6 @@ public final class LocalIsolation {
      * 序列化
      */
     public static final int SERIALIZABLE = 8;
-
 
 
 }

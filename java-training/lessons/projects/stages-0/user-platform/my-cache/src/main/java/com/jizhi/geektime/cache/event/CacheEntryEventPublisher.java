@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * 缓存entry事件发布器
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -19,6 +20,7 @@ public class CacheEntryEventPublisher {
 
     /**
      * 发布事件
+     *
      * @param event 事件
      * @param <K>
      * @param <V>
@@ -29,6 +31,7 @@ public class CacheEntryEventPublisher {
 
     /**
      * 注册监听器
+     *
      * @param configuration
      */
     public void registerCacheEntryListener(CacheEntryListenerConfiguration configuration) {
@@ -38,6 +41,7 @@ public class CacheEntryEventPublisher {
 
     /**
      * 注销监听器
+     *
      * @param configuration
      */
     public void deregisterCacheEntryListener(CacheEntryListenerConfiguration configuration) {

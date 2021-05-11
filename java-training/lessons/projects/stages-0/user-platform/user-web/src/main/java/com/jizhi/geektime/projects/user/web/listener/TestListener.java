@@ -61,9 +61,8 @@ public class TestListener implements ServletContextListener {
     }
 
 
-
     private void testJms(ConnectionFactory connectionFactory) {
-        try{
+        try {
             // 创建 jms 连接
             Connection connection = connectionFactory.createConnection();
             // 连接
@@ -94,17 +93,17 @@ public class TestListener implements ServletContextListener {
             // 消费者监听，监听处理数据的时候，会话和连接不能断开
             consumer.setMessageListener((message) -> {
                 try {
-                    System.out.println("receive msg : " + ((TextMessage)message).getText());
+                    System.out.println("receive msg : " + ((TextMessage) message).getText());
                 } catch (JMSException e) {
                     e.printStackTrace();
                 }
             });
 
-           // TextMessage message = (TextMessage) consumer.receive(1000);
-           // System.out.println("receive msg : " + message.getText());
+            // TextMessage message = (TextMessage) consumer.receive(1000);
+            // System.out.println("receive msg : " + message.getText());
 
-           // session.close();
-          //  connection.close();
+            // session.close();
+            //  connection.close();
 
         } catch (JMSException e) {
             e.printStackTrace();

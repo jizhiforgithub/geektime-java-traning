@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * 基于数据库的用户存储实现
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -77,7 +78,6 @@ public class DatabaseUserRepository extends AbstractDatabaseRepository implement
                 }
                 return users;
             };
-
 
 
     private String getColumnNameByFiledName(String fieldName) {

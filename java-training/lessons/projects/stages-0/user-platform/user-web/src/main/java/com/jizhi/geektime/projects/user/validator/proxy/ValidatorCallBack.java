@@ -20,13 +20,13 @@ import java.util.logging.Logger;
  **/
 public class ValidatorCallBack implements BeforeInvoker {
 
-    public static final String VALIDATOR_DELEGATE_BEAN_NAME = "bean/ValidatorDelegate";
+    //public static final String VALIDATOR_DELEGATE_BEAN_NAME = "bean/ValidatorDelegate";
     private static Logger logger = Logger.getLogger(ValidatorCallBack.class.getName());
 
     private ValidatorDelegate validatorDelegate;
 
     public ValidatorCallBack() {
-        validatorDelegate = (ValidatorDelegate) IoCContainer.getInstance().getObject(VALIDATOR_DELEGATE_BEAN_NAME);
+        // validatorDelegate = (ValidatorDelegate) IoCContainer.getInstance().getObject(VALIDATOR_DELEGATE_BEAN_NAME);
     }
 
     /**

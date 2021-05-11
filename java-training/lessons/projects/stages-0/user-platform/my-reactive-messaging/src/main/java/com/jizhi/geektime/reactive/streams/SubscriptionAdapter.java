@@ -17,6 +17,7 @@ class SubscriptionAdapter implements Subscription {
 
     /**
      * 请求数据
+     *
      * @param n
      */
     @Override
@@ -37,6 +38,7 @@ class SubscriptionAdapter implements Subscription {
 
     /**
      * 获取订阅者
+     *
      * @return
      */
     public Subscriber getSubscriber() {

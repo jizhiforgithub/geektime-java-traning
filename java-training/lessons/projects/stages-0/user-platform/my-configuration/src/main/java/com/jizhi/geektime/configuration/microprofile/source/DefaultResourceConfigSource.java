@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 /**
  * 默认 resource 资源下的配置数据源
+ *
  * @author jizhi7
  * @since 1.0
  **/
@@ -37,7 +38,8 @@ public class DefaultResourceConfigSource extends MapBasedConfigSource {
 
     /**
      * 准备配置元数据
-     *  读取对应文件数据，转化成properties
+     * 读取对应文件数据，转化成properties
+     *
      * @param configData
      * @throws Throwable
      */

@@ -4,7 +4,6 @@ import com.jizhi.geektime.projects.user.domain.User;
 import org.apache.derby.jdbc.EmbeddedDataSource;
 
 import javax.annotation.Resource;
-import javax.persistence.*;
 import javax.sql.DataSource;
 
 import java.util.HashMap;
@@ -17,14 +16,14 @@ import static java.lang.System.getProperties;
  **/
 public class JpaDemo {
 
-    @PersistenceContext(name = "emf")
-    private EntityManager entityManager;
+    // @PersistenceContext(name = "emf")
+    //  private EntityManager entityManager;
 
     @Resource(name = "primaryDataSource")
     private DataSource dataSource;
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory =
                 Persistence.createEntityManagerFactory("emf", getProperties());
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -39,7 +38,7 @@ public class JpaDemo {
         transaction.commit();
 
         System.out.println(entityManager.find(User.class, 1L));
-    }
+    }*/
 
     private static Map<String, Object> getProperties() {
         Map<String, Object> properties = new HashMap<>();

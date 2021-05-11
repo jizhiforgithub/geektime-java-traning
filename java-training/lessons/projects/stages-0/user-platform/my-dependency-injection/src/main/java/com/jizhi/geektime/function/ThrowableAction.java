@@ -2,6 +2,7 @@ package com.jizhi.geektime.function;
 
 /**
  * 能抛出异常的 函数式方法 没有入参，没有返回值
+ *
  * @author jizhi7
  * @since 1.0
  **/
