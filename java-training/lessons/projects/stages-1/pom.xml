@@ -11,6 +11,7 @@
 
     <modules>
         <module>spring-cache</module>
+        <module>others</module>
     </modules>
 
     <properties>
